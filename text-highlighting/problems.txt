@@ -1,0 +1,10 @@
+so the WinkNLP tutorial thing only works on a specific platform that is Observable
+
+and PyTorch doesn't have a comprehensive guide on how to detect relevant text, it applies to a lot of other
+NLP libraries
+
+so in the end I come up with a trick that is detect lines that contains at least some words in user input
+it only uses NLTK and for now it's very lightweight, only contains a few lines of code
+so next stop I will make it read text from a pdf file instead of a given paragraph and read keywords from
+user input (Scanner.in)
+
