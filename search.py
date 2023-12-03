@@ -1,10 +1,8 @@
 import tensorflow as tf
 import tensorflow_datasets as tfds
 
-new_data_dir = 'D:/Hoang/search'
-
 # Load the scientific papers dataset
-ds, info = tfds.load('scientific_papers', split='train', shuffle_files=True, with_info=True, data_dir = new_data_dir)
+ds, info = tfds.load('scientific_papers', split='train', shuffle_files=True, with_info=True)
 
 # Verify that the loaded object is a tf.data.Dataset
 assert isinstance(ds, tf.data.Dataset)
