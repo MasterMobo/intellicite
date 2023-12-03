@@ -73,9 +73,9 @@ matching_papers = search_papers(user_input)
 if matching_papers:
     print(f"Papers containing the keyword '{user_input}':")
     for paper in matching_papers:
-        print(f"Abstract: {paper[0]}")
-        print(f"Article: {paper[1]}")
-        print(f"Section Names: {paper[2]}")
+        print(f"Abstract: {papers[0]}")
+        print(f"Article: {papers[1]}")
+        print(f"Section Names: {papers[2]}")
         print("=" * 50)
 else:
     print(f"No papers found '{user_input}'.")
