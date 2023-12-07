@@ -5,4 +5,6 @@ userQuery = "Text processing in Python is interesting and important for NLP task
 
 keywords = preprocess_text(userQuery)
 
-search_papers(keywords.join(" "))
+papers = search_papers(keywords.join(" "))
+
+# FIXME This is still under construction
