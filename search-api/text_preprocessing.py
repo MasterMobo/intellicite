@@ -31,7 +31,8 @@ def preprocess_text(text):
 
     return tokens
 
-# Example usage:
-user_input = "Text processing in Python is interesting and important for NLP tasks. Check out https://example.com for more info!"
-preprocessed_input = preprocess_text(user_input)
-print(preprocessed_input)
+if __name__ == '__main__':
+    # Example usage:
+    user_input = "Text processing in Python is interesting and important for NLP tasks. Check out https://example.com for more info!"
+    preprocessed_input = preprocess_text(user_input)
+    print(preprocessed_input)

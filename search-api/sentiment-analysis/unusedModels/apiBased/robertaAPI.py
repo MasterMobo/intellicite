@@ -3,6 +3,8 @@ import asyncio
 import time
 import json  # Import the json module
 
+# This model is the same as robertaTransformers
+# This is its API version, it may take about 5s when it is first loaded
 start_time = time.time()
 API_URL = "https://api-inference.huggingface.co/models/roberta-large-mnli"
 headers = {"Authorization": "Bearer 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"}
