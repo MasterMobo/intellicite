@@ -1,81 +1,56 @@
-import tensorflow as tf
-import tensorflow_datasets as tfds
 import mysql.connector
+from mysql.connector import pooling
 
 # MySQL database connection
 db_config = {
-    'host': '127.0.0.1:3306',
-    'user': 'username',
-    'password': 'password',
+    'host': '127.0.0.1',
+    'port': 3306,
+    'user': 'root',
+    'password': 'root',
     'database': 'scientific_papers',
 }
 
-# Load the dataset
-ds, info = tfds.load('scientific_papers', split='train', shuffle_files=True, with_info=True)
+# Create a connection pool
+db_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name ="mypool",
+                                                      pool_size = 5,
+                                                      **db_config)
 
-# Connect to MySQL server
-db_connect = mysql.connector.connect(**mysql_config)
+db_connect = db_pool.get_connection()
 
-# Create a cursor object to interact with the database
+# Create a cursor object
 cursor = db_connect.cursor()
 
-# Create the 'papers' table if it doesn't exist
-create_table_query = """
-CREATE TABLE IF NOT EXISTS papers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    abstract TEXT,
-    article TEXT,
-    section_names TEXT
-);
-"""
-cursor.execute(create_table_query)
+# User input (separated words)
+input = input("Enter keyword to search for papers: ")
+search_terms = input.split()
 
-# Insert dataset records into the 'papers' table
-insert_query = "INSERT INTO papers (abstract, article, section_names) VALUES (%s, %s, %s)"
-
-for example in ds:
-    data = (example['abstract'].numpy().decode('utf-8'), example['article'].numpy().decode('utf-8'), example['section_names'].numpy().decode('utf-8'))
-    cursor.execute(insert_query, data)
-
-# Commit the changes and close the connection
-db_connect.commit()
-db_connect.close()
-
-def search_papers(keyword):
-    # Create a cursor object to interact with the database
-    cursor = db_connect.cursor()
-
-    # SQL query to search for papers containing the keyword
+# Search function
+for term in search_terms:
+    search_term = "%" + term + "%"
     search_query = (
         "SELECT * FROM papers WHERE "
-        "LOWER(abstract) LIKE %s OR "
-        "LOWER(article) LIKE %s OR "
-        "LOWER(section_names) LIKE %s"
+        "abstract LIKE %s OR "
+        "article LIKE %s OR "
+        "section_names LIKE %s "
+        "LIMIT 50"  # Limit the result set to 50 records
     )
-    keyword = f"%{keyword.lower()}%"
-    cursor.execute(search_query, (keyword, keyword, keyword))
+    cursor.execute(search_query, (search_term, search_term, search_term))
 
     # Fetch the matching papers
     matching_papers = cursor.fetchall()
 
-    # Close the connection
-    db_connection.close()
-
-    return matching_papers
-
-# User input
-user_input = input("Enter a keyword to search for papers: ")
-
-# Perform the search
-matching_papers = search_papers(user_input)
-
-# Display matching papers
-if matching_papers:
-    print(f"Papers containing the keyword '{user_input}':")
-    for paper in matching_papers:
-        print(f"Abstract: {papers[0]}")
-        print(f"Article: {papers[1]}")
-        print(f"Section Names: {papers[2]}")
+    # Display matching papers
+    if matching_papers:
+        print(f"Papers containing the keyword '{term}':")
         print("=" * 50)
-else:
-    print(f"No papers found '{user_input}'.")
+        for paper in matching_papers:
+            abstract = ' '.join(paper[1].split()[:100]) + '...' if len(paper[1].split()) > 100 else paper[1]
+            article = ' '.join(paper[2].split()[:100]) + '...' if len(paper[2].split()) > 100 else paper[2]
+            print(f"Abstract: {abstract}")
+            print(f"Article: {article}")
+            print("=" * 50)
+    else:
+        print(f"No papers found for keyword '{term}'.")
+
+cursor.close()
+db_connect.close()
