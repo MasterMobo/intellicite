@@ -1,18 +1,24 @@
 -- Create the database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS papers;
+CREATE DATABASE IF NOT EXISTS scientific_papers;
 
 -- Switch to the downloaded database
-USE papers;
+USE scientific_papers;
 
 -- Create the 'papers' table
 CREATE TABLE IF NOT EXISTS papers (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    abstract TEXT,
-    article TEXT,
-    section_names TEXT
+    abstract LONGTEXT,
+    article LONGTEXT,
+    section_names LONGTEXT
 );
 
--- Create an index for faster searches
-CREATE INDEX idx_abstract ON papers (abstract);
-CREATE INDEX idx_article ON papers (article);
-CREATE INDEX idx_section_names ON papers (section_names);
+-- select all
+SELECT * FROM papers;
+
+-- count lines
+SELECT COUNT(*) FROM papers;
+
+-- test example
+SELECT * FROM papers
+WHERE abstract LIKE '%machine learning%'
+OR article LIKE '%machine learning%';
