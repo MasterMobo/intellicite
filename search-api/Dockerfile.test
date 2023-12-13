@@ -13,6 +13,8 @@ RUN . venv/bin/activate
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN python -m nltk.downloader stopwords
+
 COPY . .
 
-CMD [ "python", "test.py" ]
+CMD [ "python", "main.py" ]
