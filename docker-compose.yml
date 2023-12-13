@@ -3,7 +3,7 @@ services:
   search-api:
     build:
       context: ./search-api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.test
     ports:
       - "3000:3000"
   
