@@ -4,12 +4,6 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 
-# Create venv
-RUN python -m venv venv
-
-# Activate venv
-RUN . venv/bin/activate
-
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
