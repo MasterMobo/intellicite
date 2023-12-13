@@ -1,10 +1,6 @@
-from text_preprocessing import *
-from search import *
+from models.intellicite import IntelliCite
 
-userQuery = "Text processing in Python is interesting and important for NLP tasks. Check out https://example.com for more info!"
+intellicite = IntelliCite()
 
-keywords = preprocess_text(userQuery)
-
-papers = search_papers(keywords.join(" "))
-
-# FIXME This is still under construction
+result = intellicite.process("sleep")
+print(result)
