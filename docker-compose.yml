@@ -1,6 +1,7 @@
 version: '3'
 services:
   search-api:
+    image: mastermobo/intellicite:search-api-latest
     build:
       context: ./search-api
       dockerfile: Dockerfile.test
