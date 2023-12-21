@@ -18,6 +18,7 @@ class SearchEngine:
         self.es_client = connect_elasticsearch()
         self.index_name = "scientific_papers"
         self.index_mapping = index_mapping
+        self.max_search_results = 10
 
         if not self.es_client.indices.exists(index=self.index_name):
             self.create_index()
@@ -57,5 +58,5 @@ class SearchEngine:
             }
         }
 
-        results = self.es_client.search(index=self.index_name, body=search_query)
+        results = self.es_client.search(index=self.index_name, body=search_query, size=self.max_search_results)
         return [result["_source"] for result in results['hits']['hits']]
