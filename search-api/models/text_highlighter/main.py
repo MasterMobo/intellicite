@@ -36,6 +36,6 @@ class TextHighlighter:
 
     def highlight_information(self, keywords, papers):
         for paper in papers:
-            paper["highlights"] = self.get_highlighted_sentences(keywords, paper["article"])
+            paper["highlights"] = self.get_highlighted_sentences(keywords, paper["abstract"])
 
         return papers
