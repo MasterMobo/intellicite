@@ -4,9 +4,33 @@ from .loadData import get_papers_json
 index_mapping = {
     "mappings": {
         "properties": {
-            "abstract": {"type": "text"},
-            "article": {"type": "text"},
-            "section_names": {"type": "keyword"}
+            "id": {"type": "string"},
+            "submitter": {"type": "string"},
+            "authors": {"type": "string"},
+            "title": {"type": "string"},
+            "comments": {"type": "string"},
+            "journal-ref": {"type": "string"},
+            "doi": {"type": "string"},
+            "report-no": {"type": "string"},
+            "categories": {"type": "string"},
+            "license": {"type": "string"},
+            "abstract": {"type": "string"},
+            "versions": {
+                "type": "nested",
+                "properties": {
+                    "version": {"type": "string"},
+                    "created": {"type": "string"}
+                }
+            },
+            "update_date": {"type": "string"},
+            "authors_parsed": {
+                "type": "nested",
+                "properties": {
+                    "first_name": {"type": "string"},
+                    "middle_name": {"type": "string"},
+                    "last_name": {"type": "string"}
+                }
+            }
         }
     }
 }
@@ -32,7 +56,7 @@ class SearchEngine:
             "query": {
                 "multi_match": {
                     "query": user_query,
-                    "fields": ["abstract", "article"]
+                    "fields": ["title", "abstract"]
                 }
             }
         }
