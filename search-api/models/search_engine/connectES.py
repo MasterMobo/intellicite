@@ -1,5 +1,3 @@
-from elasticsearch import Elasticsearch
-
 import time
 from elasticsearch import Elasticsearch, exceptions
 
