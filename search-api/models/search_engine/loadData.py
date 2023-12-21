@@ -2,6 +2,7 @@ import requests
 import json
 
 def get_papers_json():
+    # need new link of the json metadata file
     url = "https://datasets-server.huggingface.co/rows?dataset=scientific_papers&config=arxiv&split=train&offset=0&length=100"     
     try:
         # Make a GET request to the URL
