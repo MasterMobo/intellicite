@@ -30,7 +30,6 @@ class TextProcessor:
         tokens = [token for token in tokens if token.lower() not in self.stop_words]
 
         # Lemmatization (reducing words into base form)
-
         tokens = [self.lemmatize(token) for token in tokens]
 
         return tokens

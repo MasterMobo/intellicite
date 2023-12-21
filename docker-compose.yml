@@ -5,6 +5,8 @@ services:
     build:
       context: ./search-api
       dockerfile: Dockerfile
+    environment:
+      - PYTHONUNBUFFERED=1
     ports:
       - "5000:5000"
     depends_on:
