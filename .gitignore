@@ -2,4 +2,7 @@
 myenv
 /venv
 
+paper-dataset.json
+data.json
+
 __pycache__

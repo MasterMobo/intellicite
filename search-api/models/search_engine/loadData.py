@@ -1,19 +1,12 @@
-import requests
+import os
 import json
 
 def get_papers_json():
-    url = "https://datasets-server.huggingface.co/rows?dataset=scientific_papers&config=arxiv&split=train&offset=0&length=100"     
-    try:
-        # Make a GET request to the URL
-        response = requests.get(url)
+    # Get the path of the current file
+    current_path = os.path.dirname(__file__)
+    # Get the path of the data.json file
+    data_path = os.path.join(current_path, "data.json")
 
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            # Parse the JSON response
-            data = response.json()["rows"]
-            data = [entry["row"] for entry in data]
-
-            return data
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    with open(data_path, 'r') as file:
+        for line in file:
+            yield json.loads(line)

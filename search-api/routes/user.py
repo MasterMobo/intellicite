@@ -33,6 +33,10 @@ def process():
     response = []
     for index, paper in enumerate(papers):
         response.append({
+            "id": paper["id"],
+            "title": paper["title"],
+            "authors": paper["authors"],
+            "doi": paper["doi"],
             "paper_index": index + 1,
             "abstract": paper["abstract"][:200],
             "highlights": paper["highlights"],

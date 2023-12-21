@@ -4,9 +4,11 @@ from .loadData import get_papers_json
 index_mapping = {
     "mappings": {
         "properties": {
+            "id": {"type": "text"},
+            "authors": {"type": "text"},
+            "title": {"type": "text"},
             "abstract": {"type": "text"},
-            "article": {"type": "text"},
-            "section_names": {"type": "keyword"}
+            "doi": {"type": "text"},
         }
     }
 }
@@ -17,22 +19,40 @@ class SearchEngine:
         self.index_name = "scientific_papers"
         self.index_mapping = index_mapping
 
-    def index_papers(self):
-        papers = get_papers_json()
-        self.es_client.indices.create(index=self.index_name, body=self.index_mapping, ignore=400)
+        if not self.es_client.indices.exists(index=self.index_name):
+            self.create_index()
+            self.index_papers()
 
-        for paper in papers:
-            self.es_client.index(index=self.index_name, body=paper)        
+    def create_index(self):
+        print("Creating index...")
+        self.es_client.indices.create(index=self.index_name, body=self.index_mapping, ignore=400)
+        print("Index created")
+
+    def index_papers(self, batch_size=1000):
+        print("Indexing papers...")
+        papers_generator = get_papers_json()
+
+        papers_batch = []
+        for paper in papers_generator:
+            papers_batch.append({"index": {"_index": self.index_name}})
+            papers_batch.append(paper)
+
+            if len(papers_batch) >= 2 * batch_size:
+                self.es_client.bulk(body=papers_batch, refresh=True)
+                papers_batch = []
+
+        # Index any remaining papers
+        if papers_batch:
+            self.es_client.bulk(body=papers_batch, refresh=True) 
+        
+        print("Finished indexing papers")
 
     def search_papers(self, user_query):
-        if not self.es_client.indices.exists(index=self.index_name):
-            self.index_papers()
-            
         search_query = {
             "query": {
                 "multi_match": {
                     "query": user_query,
-                    "fields": ["abstract", "article"]
+                    "fields": ["abstract", "authors", "title"]
                 }
             }
         }
