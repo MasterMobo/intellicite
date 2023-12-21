@@ -4,9 +4,9 @@ services:
     image: mastermobo/intellicite:search-api-latest
     build:
       context: ./search-api
-      dockerfile: Dockerfile.test
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "5000:5000"
     depends_on:
       - es01
 

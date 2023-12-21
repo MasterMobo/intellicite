@@ -1,13 +1,14 @@
-FROM python:3.8
+FROM python:3.9
 
 WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 
-# I put this comment becuase on the ./search-api there is a requirements.txt
-# which I do not know what purpose it serves
-# cause the dependencies does not add up
 RUN pip install --no-cache-dir -r requirements.txt
+
+RUN python -m nltk.downloader stopwords
+
+RUN python -m nltk.downloader wordnet
 
 COPY . .
 
