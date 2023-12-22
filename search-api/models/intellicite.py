@@ -29,8 +29,8 @@ class IntelliCite:
         print("Highlighting papers...")
         highlighted_papers = self.text_highlighter.highlight_information(keywords, sorted_papers)
         
-        # print("Analyzing sentiment...")
-        # sentiment_analysis = self.sentiment_analyzer.analyze_papers_sentiment(user_input, highlighted_papers)
+        print("Analyzing sentiment...")
+        sentiment_analysis = self.sentiment_analyzer.analyze_papers_sentiment(user_input, highlighted_papers)
         
         print("Done!")
-        return highlighted_papers
+        return sentiment_analysis
