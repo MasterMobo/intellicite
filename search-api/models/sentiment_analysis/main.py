@@ -27,25 +27,14 @@ class SentimentAnalyzer:
     
     def analyze_papers_sentiment(self, user_input, papers):
         for paper in papers:
-            # Token limit
-            token_limit = 514
-
-            # Initialize variables
-            truncated_text = ""
-            current_token_count = 0
-
-            # Iterate through sentences until the total token count is less than or equal to the limit
+            filtered_sentences = []
+            token_count = 0
             for sentence in paper["highlights"]:
-                # Remove "@xmath", "@xcite", and "\n" from the sentence
-                cleaned_sentence = sentence.replace('@xmath', '').replace('@xcite', '').replace('\n', '')
-                
-                sentence_tokens = len(cleaned_sentence.split())
-                
-                if current_token_count + sentence_tokens <= token_limit:
-                    truncated_text += cleaned_sentence + " "
-                    current_token_count += sentence_tokens
-                else:
-                    break
+                token_count += len(self.tokenizer.tokenize(sentence))
 
-            paper["sentiment"] = self.get_sentiment_score(user_input, truncated_text)
+                if(token_count <= 514):
+                    filtered_sentences.append(sentence)
+            paper["sentiment"] = self.get_sentiment_score(user_input, " ".join(filtered_sentences))
+            print(paper["sentiment"])
+        print(papers)
         return papers
