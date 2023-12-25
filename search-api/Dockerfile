@@ -16,5 +16,4 @@ ENV FLASK_APP=main.py
 
 EXPOSE 3000
 
-# Currently no Flask up and running
 CMD ["flask", "run", "--host=0.0.0.0"]
