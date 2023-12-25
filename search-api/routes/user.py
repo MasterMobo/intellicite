@@ -40,7 +40,10 @@ def process():
             "paper_index": index + 1,
             "abstract": paper["abstract"][:200],
             "highlights": paper["highlights"],
-            "sentiment": paper["sentiment"] 
+            "sentiment": paper["sentiment"],
+            "categories": paper["categories"],
+            "journal-ref": paper["journal-ref"],
+            "submitter": paper["submitter"],
         })
 
     return jsonify(response), 200

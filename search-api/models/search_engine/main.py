@@ -9,6 +9,9 @@ index_mapping = {
             "title": {"type": "text"},
             "abstract": {"type": "text"},
             "doi": {"type": "text"},
+            "categories": {"type": "text"},
+            "journal-ref": {"type": "text"},
+            "submitter": {"type": "text"},
         }
     }
 }
