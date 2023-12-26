@@ -3,7 +3,7 @@ services:
   search-api:
     image: mastermobo/intellicite:search-api-latest
     build:
-      context: ./search-api
+      context: ./
       dockerfile: Dockerfile
     environment:
       - PYTHONUNBUFFERED=1
