@@ -21,7 +21,7 @@ class SearchEngine:
         self.es_client = connect_elasticsearch()
         self.index_name = "scientific_papers"
         self.index_mapping = index_mapping
-        self.max_search_results = 10
+        self.max_search_results = 50
 
         if not self.es_client.indices.exists(index=self.index_name):
             self.create_index()

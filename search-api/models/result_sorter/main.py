@@ -3,6 +3,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 class ResultSorter:
     def __init__(self, model):
         self.model = model
+        self.max_results = 10
     
     def get_embedding(self, text):
         return self.model(text).vector
@@ -24,5 +25,7 @@ class ResultSorter:
         # Sort papers by similarity score in descending order
         sorted_papers = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
 
+        sorted_papers = sorted_papers[:self.max_results]
+        
         # Return sorted papers
         return [paper[0] for paper in sorted_papers]

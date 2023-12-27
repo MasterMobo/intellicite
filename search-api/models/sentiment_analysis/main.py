@@ -7,8 +7,6 @@ class SentimentAnalyzer:
         self.tokenizer, self.model = loadSentimentModel()
     
     def get_sentiment_score(self, premise, hypothesis):
-        print(premise, type(premise))
-        print(hypothesis, type(hypothesis))
         # Tokenize input
         input_ids = self.tokenizer.encode(premise, hypothesis, return_tensors="pt")
 
@@ -35,6 +33,4 @@ class SentimentAnalyzer:
                 if(token_count <= 514):
                     filtered_sentences.append(sentence)
             paper["sentiment"] = self.get_sentiment_score(user_input, " ".join(filtered_sentences))
-            print(paper["sentiment"])
-        print(papers)
         return papers
