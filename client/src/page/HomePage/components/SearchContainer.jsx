@@ -1,0 +1,108 @@
+import React from "react";
+import {
+    TextareaAutosize,
+    Container,
+    Button,
+    Stack,
+    Paper,
+} from "@mui/material";
+
+import PaperSearchResult from "./PaperSearchResult";
+const papers = [
+    {
+        id: 1,
+        title: "Advancements in Artificial Intelligence",
+        authors: ["John Smith", "Emily Johnson"],
+        abstract:
+            "This paper explores the latest advancements in artificial intelligence, focusing on machine learning algorithms and their applications in various domains.",
+        highlights: [
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
+        ],
+        sentiment: {
+            positive: 0.8,
+            negative: 0.1,
+            neutral: 0.1,
+        },
+        tags: ["Machine Learning", "Artificial Intelligence", "Innovation"],
+        journal: "Journal of AI Research",
+        relevance: 0.92,
+        doi: "10.1234/1234.1234",
+    },
+    {
+        id: 2,
+        title: "Bioinformatics and Genomic Data Analysis",
+        authors: ["Mary Brown", "Robert Johnson"],
+        abstract:
+            "This paper presents a comprehensive analysis of bioinformatics techniques for processing and interpreting genomic data, with a focus on personalized medicine.",
+        highlights: [
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
+        ],
+        sentiment: {
+            positive: 0.7,
+            negative: 0.1,
+            neutral: 0.2,
+        },
+        tags: [
+            "Bioinformatics",
+            "Genomics",
+            "Personalized Medicine",
+            "Bioinformatics",
+            "Personalized Medicine",
+        ],
+        journal: "Journal of Bioinformatics",
+        relevance: 0.88,
+        doi: "10.1234/1234.1234",
+    },
+    {
+        id: 3,
+        title: "Environmental Sustainability and Green Technologies",
+        authors: ["Alice White", "David Miller"],
+        abstract:
+            "This paper investigates the role of green technologies in promoting environmental sustainability, discussing the challenges and opportunities in the transition to a greener future.",
+        highlights: [
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
+        ],
+        sentiment: {
+            positive: 0.6,
+            negative: 0.2,
+            neutral: 0.2,
+        },
+        tags: ["Green Technologies", "Environmental Sustainability"],
+        journal: "Journal of Environmental Science",
+        relevance: 0.85,
+        doi: "10.1234/1234.1234",
+    },
+];
+
+function SearchContainer() {
+    return (
+        <Container sx={{ height: "100vh" }}>
+            <Stack direction={"row"} spacing={2} height={"100%"}>
+                <Stack direction="column" spacing={2} width={"50%"}>
+                    <TextareaAutosize
+                        aria-label="minimum height"
+                        minRows={10}
+                        placeholder="Place your text here"
+                    />
+                    <Button variant="contained">Find Sources</Button>
+                </Stack>
+
+                <Stack direction="column" spacing={2} width={"50%"}>
+                    <Stack direction="column" spacing={2}>
+                        {papers.map((paper, index) => (
+                            <PaperSearchResult
+                                key={index}
+                                paper={paper}
+                            ></PaperSearchResult>
+                        ))}
+                    </Stack>
+                </Stack>
+            </Stack>
+        </Container>
+    );
+}
+
+export default SearchContainer;
