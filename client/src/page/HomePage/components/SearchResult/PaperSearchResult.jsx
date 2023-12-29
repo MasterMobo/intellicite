@@ -12,9 +12,7 @@ import {
 import HighlightsSection from "./HighlightsSection";
 import PaperDescription from "./PaperDescription";
 import PaperHeader from "./PaperHeader";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import DownloadIcon from "@mui/icons-material/Download";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import PaperFooter from "./PaperFooter";
 
 function PaperSearchResult({ paper, index }) {
     const [expanded, setExpanded] = useState(true);
@@ -37,31 +35,6 @@ function PaperSearchResult({ paper, index }) {
                 </Collapse>
             </Stack>
         </Paper>
-    );
-}
-
-function PaperFooter({ paper }) {
-    return (
-        <Box sx={{ mt: 1, mb: 0, display: "flex", gap: 2 }}>
-            <IconButton color="primary" sx>
-                <FavoriteIcon />
-            </IconButton>
-
-            <IconButton color="primary" sx>
-                <DownloadIcon />
-            </IconButton>
-
-            <Link
-                href={paper.url}
-                underline="hover"
-                target="_blank"
-                rel="noopener"
-                sx={{ ml: "auto", display: "flex", alignItems: "center" }}
-            >
-                {"View Paper"}
-                <OpenInNewIcon sx={{ ml: 0.5, fontSize: 15 }} />
-            </Link>
-        </Box>
     );
 }
 

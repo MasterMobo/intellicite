@@ -15,8 +15,13 @@ const mainTheme = createTheme({
             default: "#FEF8F0",
         },
         success: {
-            main: "#9acc7a",
-            contrastText: "#254519",
+            main: "#cefab1",
+            contrastText: "#2f5914",
+        },
+
+        error: {
+            main: "#f7b3a6",
+            contrastText: "#541a0e",
         },
     },
 
