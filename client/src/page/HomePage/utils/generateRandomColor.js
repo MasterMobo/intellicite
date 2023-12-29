@@ -1,5 +1,3 @@
-import md5 from "md5";
-
 // Function to generate a unique color based on input string
 function generateRandomColor(inputString) {
     // Calculate a numerical value based on the characters in the string
