@@ -9,6 +9,8 @@ function NegativeSentimentTag() {
             color="error"
             sx={{
                 borderRadius: 1,
+                fontWeight: "bold",
+                textTransform: "uppercase",
             }}
             icon={<ThumbDownAltIcon></ThumbDownAltIcon>}
             onClick={() => {}}

@@ -7,7 +7,7 @@ import {
     Paper,
 } from "@mui/material";
 
-import PaperSearchResult from "./PaperSearchResult";
+import PaperSearchResult from "./SearchResult/PaperSearchResult";
 const papers = [
     {
         id: 1,
@@ -19,6 +19,7 @@ const papers = [
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
         ],
+        url: "https://www.google.com",
         sentiment: [
             {
                 label: "positive",
@@ -48,6 +49,8 @@ const papers = [
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
         ],
+        url: "https://www.google.com",
+
         sentiment: [
             {
                 label: "positive",
@@ -73,6 +76,7 @@ const papers = [
         relevance: 0.88,
         doi: "10.1234/1234.1234",
     },
+
     {
         id: 3,
         title: "Environmental Sustainability and Green Technologies",
@@ -83,6 +87,7 @@ const papers = [
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
         ],
+        url: "https://www.google.com",
         sentiment: [
             {
                 label: "positive",
@@ -106,7 +111,7 @@ const papers = [
 
 function SearchContainer() {
     return (
-        <Container sx={{ height: "100vh" }}>
+        <Container sx={{ minHeight: "100vh" }}>
             <Stack direction={"row"} spacing={2} height={"100%"}>
                 <Stack direction="column" spacing={2} width={"50%"}>
                     <TextareaAutosize
