@@ -1,33 +1,33 @@
-import { Stack, Tooltip, Typography, Chip, Box } from "@mui/material";
+import { Stack, Tooltip, Typography, Chip, Box, Paper } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import HighlightsBox from "./HighLightsBox";
 import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
 import SentimentTag from "./SentimentTag/SentimentTag";
 
-function HighlightsSection({ highlights }) {
+function HighlightsSection({ paper }) {
     return (
         <Stack spacing={0.5}>
-            <HighlightsHeader></HighlightsHeader>
-            <HighlightsBox highlights={highlights}></HighlightsBox>
+            <HighlightsHeader sentiment={paper.sentiment}></HighlightsHeader>
+            <HighlightsBox highlights={paper.highlights}></HighlightsBox>
         </Stack>
     );
 }
 
-function HighlightsHeader() {
+function HighlightsHeader({ sentiment }) {
     return (
         <Box sx={{ display: "flex" }}>
             <Typography variant="subtitle1">
                 Highlights
                 <Tooltip
                     placement="right"
-                    title="Relevant sentences we found in the paper"
+                    title="Relevant sentences found in the paper"
                 >
                     <HelpOutlineIcon fontSize="1"></HelpOutlineIcon>
                 </Tooltip>
             </Typography>
 
             <SentimentTag
-                sentiment={"neutral"}
+                sentiment={sentiment}
                 sx={{
                     ml: "auto",
                 }}

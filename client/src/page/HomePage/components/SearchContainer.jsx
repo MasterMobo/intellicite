@@ -19,11 +19,20 @@ const papers = [
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
         ],
-        sentiment: {
-            positive: 0.8,
-            negative: 0.1,
-            neutral: 0.1,
-        },
+        sentiment: [
+            {
+                label: "positive",
+                score: 0.7,
+            },
+            {
+                label: "negative",
+                score: 0.1,
+            },
+            {
+                label: "neutral",
+                score: 0.2,
+            },
+        ],
         tags: ["Machine Learning", "Artificial Intelligence", "Innovation"],
         journal: "Journal of AI Research",
         relevance: 0.92,
@@ -39,11 +48,20 @@ const papers = [
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
         ],
-        sentiment: {
-            positive: 0.7,
-            negative: 0.1,
-            neutral: 0.2,
-        },
+        sentiment: [
+            {
+                label: "positive",
+                score: 0.2,
+            },
+            {
+                label: "negative",
+                score: 0.6,
+            },
+            {
+                label: "neutral",
+                score: 0.1,
+            },
+        ],
         tags: [
             "Bioinformatics",
             "Genomics",
@@ -65,11 +83,20 @@ const papers = [
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis nostrum inventore quod debitis libero explicabo maiores consectetur dignissimos? Vitae corrupti expedita, saepe ipsam eveniet sapiente tenetur eius sunt culpa ducimus",
         ],
-        sentiment: {
-            positive: 0.6,
-            negative: 0.2,
-            neutral: 0.2,
-        },
+        sentiment: [
+            {
+                label: "positive",
+                score: 0.1,
+            },
+            {
+                label: "negative",
+                score: 0.1,
+            },
+            {
+                label: "neutral",
+                score: 0.7,
+            },
+        ],
         tags: ["Green Technologies", "Environmental Sustainability"],
         journal: "Journal of Environmental Science",
         relevance: 0.85,

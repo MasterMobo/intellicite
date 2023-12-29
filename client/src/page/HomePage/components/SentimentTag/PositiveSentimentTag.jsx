@@ -1,7 +1,18 @@
-import React from "react";
-
+import { Chip } from "@mui/material";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 function PositiveSentimentTag() {
-    return <div>PositiveSentimentTag</div>;
+    return (
+        <Chip
+            label="Positive"
+            size="medium"
+            color="success"
+            sx={{
+                borderRadius: 1,
+            }}
+            icon={<ThumbUpAltIcon></ThumbUpAltIcon>}
+            onClick={() => {}}
+        ></Chip>
+    );
 }
 
 export default PositiveSentimentTag;
