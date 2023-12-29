@@ -18,9 +18,9 @@ function PaperHeader({ paper, expanded, setExpanded }) {
                 onClick={() => setExpanded(!expanded)}
             >
                 {expanded ? (
-                    <KeyboardArrowDownIcon></KeyboardArrowDownIcon>
-                ) : (
                     <KeyboardArrowUpIcon></KeyboardArrowUpIcon>
+                ) : (
+                    <KeyboardArrowDownIcon></KeyboardArrowDownIcon>
                 )}
             </IconButton>
         </Box>
