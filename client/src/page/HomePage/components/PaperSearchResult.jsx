@@ -20,9 +20,7 @@ function PaperSearchResult({ paper, index }) {
                 <PaperDescription paper={paper}></PaperDescription>
 
                 <Collapse in={expanded}>
-                    <HighlightsSection
-                        highlights={paper.highlights}
-                    ></HighlightsSection>
+                    <HighlightsSection paper={paper}></HighlightsSection>
                 </Collapse>
             </Stack>
         </Paper>
