@@ -128,6 +128,7 @@ function SearchContainer() {
         <Container sx={{ minHeight: "100vh" }}>
             <Stack direction={"row"} spacing={2} height={"100%"}>
                 <SearchInputContainer
+                    searchState={searchState}
                     handleSearch={handleSearch}
                 ></SearchInputContainer>
 

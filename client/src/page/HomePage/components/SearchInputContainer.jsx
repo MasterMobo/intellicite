@@ -1,6 +1,11 @@
-import { Button, Stack, TextareaAutosize } from "@mui/material";
+import {
+    Button,
+    Stack,
+    TextareaAutosize,
+    CircularProgress,
+} from "@mui/material";
 
-function SearchInputContainer({ handleSearch }) {
+function SearchInputContainer({ handleSearch, searchState }) {
     return (
         <Stack direction="column" spacing={2} width={"50%"}>
             <TextareaAutosize
@@ -8,8 +13,20 @@ function SearchInputContainer({ handleSearch }) {
                 minRows={10}
                 placeholder="Place your text here"
             />
-            <Button variant="contained" onClick={handleSearch}>
-                Find Sources
+            <Button
+                variant="contained"
+                sx={{ height: "2.2rem" }}
+                onClick={handleSearch}
+            >
+                {searchState === "loading" && (
+                    <CircularProgress
+                        size={20}
+                        sx={{
+                            color: "black",
+                        }}
+                    />
+                )}
+                {searchState !== "loading" && "Find Sources"}
             </Button>
         </Stack>
     );
