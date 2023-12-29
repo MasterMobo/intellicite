@@ -9,7 +9,7 @@ function HighlightsBox({ highlights }) {
                 flexWrap: "wrap",
                 gap: 1,
                 bgcolor: "rgba(0, 0, 0, 0.1)",
-                p: 1,
+                p: 1.5,
                 borderRadius: 1,
             }}
         >
