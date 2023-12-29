@@ -1,5 +1,5 @@
-from .connectES import connect_elasticsearch
-from .loadData import get_papers_json
+from connectES import connect_elasticsearch
+from loadData import get_papers_json
 
 index_mapping = {
     "mappings": {
@@ -15,6 +15,7 @@ index_mapping = {
         }
     }
 }
+
 
 class SearchEngine:
     def __init__(self):
@@ -47,8 +48,8 @@ class SearchEngine:
 
         # Index any remaining papers
         if papers_batch:
-            self.es_client.bulk(body=papers_batch, refresh=True) 
-        
+            self.es_client.bulk(body=papers_batch, refresh=True)
+
         print("Finished indexing papers")
 
     def search_papers(self, user_query):
@@ -63,3 +64,12 @@ class SearchEngine:
 
         results = self.es_client.search(index=self.index_name, body=search_query, size=self.max_search_results)
         return [result["_source"] for result in results['hits']['hits']]
+
+
+if __name__ == "__main__":
+    search = SearchEngine()
+
+    # Call the search_papers method with a sample query
+    results = search.search_papers("machine learning")
+    for line in results:
+        print(line)
