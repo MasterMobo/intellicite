@@ -1,13 +1,16 @@
-import React from "react";
+import { useState } from "react";
 import {
-    TextareaAutosize,
     Container,
-    Button,
-    Stack,
+    Divider,
     Paper,
+    Skeleton,
+    Stack,
+    Typography,
 } from "@mui/material";
-
-import PaperSearchResult from "./SearchResult/PaperSearchResult";
+import SearchInputContainer from "./SearchInputContainer";
+import SearchResultContainer from "./SearchResultContainer";
+import LoadingSkeleton from "./LoadingSkeleton";
+import SearchIcon from "@mui/icons-material/Search";
 const papers = [
     {
         id: 1,
@@ -110,31 +113,60 @@ const papers = [
 ];
 
 function SearchContainer() {
+    const [searchState, setSearchState] = useState("initial");
+    const [searchResults, setSearchResults] = useState(papers);
+    const handleSearch = () => {
+        setSearchState("loading");
+
+        // Simulate an asynchronous search operation (replace with your actual search logic)
+        setTimeout(() => {
+            setSearchState("done");
+        }, 1000); // Adjust the time based on your search operation duration
+    };
+
     return (
         <Container sx={{ minHeight: "100vh" }}>
             <Stack direction={"row"} spacing={2} height={"100%"}>
-                <Stack direction="column" spacing={2} width={"50%"}>
-                    <TextareaAutosize
-                        aria-label="minimum height"
-                        minRows={10}
-                        placeholder="Place your text here"
-                    />
-                    <Button variant="contained">Find Sources</Button>
-                </Stack>
+                <SearchInputContainer
+                    handleSearch={handleSearch}
+                ></SearchInputContainer>
 
-                <Stack direction="column" spacing={2} width={"50%"}>
-                    <Stack direction="column" spacing={2}>
-                        {papers.map((paper, index) => (
-                            <PaperSearchResult
-                                key={index}
-                                paper={paper}
-                            ></PaperSearchResult>
-                        ))}
-                    </Stack>
-                </Stack>
+                {searchState === "initial" && (
+                    <SearchResultPlaceholder></SearchResultPlaceholder>
+                )}
+                {searchState === "loading" && (
+                    <LoadingSkeleton></LoadingSkeleton>
+                )}
+                {searchState === "done" && (
+                    <SearchResultContainer
+                        results={searchResults}
+                    ></SearchResultContainer>
+                )}
+                {searchState === "done" && searchResults.length === 0 && (
+                    <div>No result found</div>
+                )}
             </Stack>
         </Container>
     );
 }
 
+function SearchResultPlaceholder() {
+    return (
+        <Paper
+            sx={{
+                p: 2,
+                width: "50%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+            }}
+        >
+            <SearchIcon sx={{ fontSize: 80 }}></SearchIcon>
+            <Typography variant="h6">Search Results</Typography>
+            <Typography variant="caption">
+                Your search results will be displayed here
+            </Typography>
+        </Paper>
+    );
+}
 export default SearchContainer;
