@@ -8,6 +8,8 @@ function NeutralSentimentTag() {
             size="medium"
             sx={{
                 borderRadius: 1,
+                fontWeight: "bold",
+                textTransform: "uppercase",
             }}
             icon={<SentimentNeutralIcon></SentimentNeutralIcon>}
             onClick={() => {}}

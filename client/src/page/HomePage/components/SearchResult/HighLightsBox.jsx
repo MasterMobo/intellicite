@@ -8,7 +8,7 @@ function HighlightsBox({ highlights }) {
                 flexDirection: "row",
                 flexWrap: "wrap",
                 gap: 1,
-                bgcolor: "rgba(0, 0, 0, 0.1)",
+                bgcolor: "rgba(0, 0, 0, 0.08)",
                 p: 1.5,
                 borderRadius: 1,
             }}

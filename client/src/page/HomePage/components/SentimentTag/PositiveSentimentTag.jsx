@@ -8,6 +8,8 @@ function PositiveSentimentTag() {
             color="success"
             sx={{
                 borderRadius: 1,
+                fontWeight: "bold",
+                textTransform: "uppercase",
             }}
             icon={<ThumbUpAltIcon></ThumbUpAltIcon>}
             onClick={() => {}}

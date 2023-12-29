@@ -1,4 +1,5 @@
 import { Box, Chip } from "@mui/material";
+import generateRandomColor from "../../utils/generateRandomColor";
 
 function TagList({ tags }) {
     return (
@@ -11,7 +12,12 @@ function TagList({ tags }) {
             }}
         >
             {tags.map((tag, index) => (
-                <Chip label={tag} key={index} size="small"></Chip>
+                <Chip
+                    label={tag}
+                    key={index}
+                    sx={{ bgcolor: generateRandomColor(tag) }}
+                    size="small"
+                ></Chip>
             ))}
         </Box>
     );
