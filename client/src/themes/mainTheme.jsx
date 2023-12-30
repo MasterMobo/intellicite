@@ -1,7 +1,7 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { GlobalStyles } from "@mui/material";
-import "@fontsource/tajawal";
+import { createTheme } from "@mui/material/styles";
+import "@fontsource/noto-sans";
 import "@fontsource-variable/aleo";
+import "@fontsource/roboto";
 
 const mainTheme = createTheme({
     palette: {
@@ -37,34 +37,92 @@ const mainTheme = createTheme({
 
     typography: {
         h1: {
-            fontFamily: ["Aleo Variable", "sans-serif"].join(","),
+            fontFamily: [
+                "Aleo Variable",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+            ].join(","),
         },
         h2: {
-            fontFamily: ["Aleo Variable", "sans-serif"].join(","),
+            fontFamily: [
+                "Aleo Variable",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+            ].join(","),
         },
         h3: {
-            fontFamily: ["Aleo Variable", "sans-serif"].join(","),
+            fontFamily: [
+                "Aleo Variable",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+            ].join(","),
         },
         h4: {
-            fontFamily: ["Aleo Variable", "sans-serif"].join(","),
+            fontFamily: [
+                "Aleo Variable",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+            ].join(","),
         },
         h5: {
-            fontFamily: ["Aleo Variable", "sans-serif"].join(","),
+            fontFamily: [
+                "Aleo Variable",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+            ].join(","),
         },
         h6: {
-            fontFamily: ["Aleo Variable", "sans-serif"].join(","),
+            fontFamily: [
+                "Aleo Variable",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+            ].join(","),
         },
 
         body1: {
-            fontFamily: ["Aleo Variable", "sans-serif"].join(","),
+            fontFamily: [
+                "Aleo Variable",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+            ].join(","),
         },
 
         body2: {
-            fontFamily: ["Aleo Variable", "sans-serif"].join(","),
+            fontFamily: [
+                "Aleo Variable",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+            ].join(","),
         },
 
-        fontFamily: ["Tajawal", "sans-serif"].join(","),
+        fontFamily: [
+            "Noto Sans",
+            "Roboto",
+            "Helvetica",
+            "Arial",
+            "sans-serif",
+        ].join(","),
         fontSize: 16,
+
+        allVariants: {
+            letterSpacing: 0,
+        },
     },
 });
 

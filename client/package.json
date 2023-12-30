@@ -13,6 +13,8 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@fontsource-variable/aleo": "^5.0.3",
+    "@fontsource/noto-sans": "^5.0.18",
+    "@fontsource/roboto": "^5.0.8",
     "@fontsource/tajawal": "^5.0.8",
     "@mui/icons-material": "^5.15.2",
     "@mui/material": "^5.15.2",
