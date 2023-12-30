@@ -8,8 +8,7 @@ function LoadingSkeleton() {
         <Stack
             direction="column"
             spacing={2}
-            width={"50%"}
-            sx={{ maxHeight: "100vh", overflow: "hidden" }}
+            sx={{ maxHeight: "100%", overflow: "hidden" }}
         >
             <Stack direction="column" spacing={1.5}>
                 {Array.from({ length: SKELETON_COUNT }).map((_, index) => (

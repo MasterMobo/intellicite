@@ -1,12 +1,12 @@
 import { Box, Stack } from "@mui/material";
-import PaperSearchResult from "./SearchResult/PaperSearchResult";
+import PaperSearchResult from "../SearchResult/PaperSearchResult";
 
-function SearchResultContainer({ results }) {
+function SearchResultDoneContainer({ results }) {
+    // Displayed when the search is done
     return (
         <Box
             sx={{
-                width: "50%",
-                maxHeight: "100vh",
+                maxHeight: "100%",
                 overflowX: "hidden",
                 overflowY: "scroll",
             }}
@@ -23,4 +23,4 @@ function SearchResultContainer({ results }) {
     );
 }
 
-export default SearchResultContainer;
+export default SearchResultDoneContainer;
