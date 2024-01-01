@@ -8,7 +8,7 @@ import SearchContainer from "./components/SearchContainer";
 
 function HomePage() {
     return (
-        <Container>
+        <Container maxWidth="xl">
             <SearchContainer />
         </Container>
     );

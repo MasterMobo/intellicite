@@ -7,7 +7,7 @@ import {
 
 function SearchInputContainer({ handleSearch, searchState, setSearchText }) {
     return (
-        <Stack direction="column" spacing={2} width={"50%"} maxHeight={"100%"}>
+        <Stack direction="column" spacing={2} width={"40%"} maxHeight={"100%"}>
             <TextareaAutosize
                 aria-label="minimum height"
                 minRows={10}
