@@ -3,11 +3,6 @@ import json
 from kaggle.api.kaggle_api_extended import KaggleApi
 
 def get_papers_json(dataset, file):
-    os.environ['KAGGLE_USERNAME'] = "buidangkhoa"
-    os.environ['KAGGLE_KEY'] = "495bdf9d087690b2212b0edfc6c10acc"
-    # Replace with path of the API key on local
-    os.environ["KAGGLE_CONFIG_DIR"] = "C:/Users/Admin/kaggle/kaggle.json"
-
     api = KaggleApi()
     api.authenticate()
 

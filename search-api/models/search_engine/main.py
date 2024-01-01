@@ -1,6 +1,6 @@
 # main.py:
-from connectES import connect_elasticsearch
-from paperHandler import paperHandler
+from .connectES import connect_elasticsearch
+from .paperHandler import paperHandler
 
 index_mapping = {
     "mappings": {

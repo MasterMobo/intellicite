@@ -1,5 +1,5 @@
-from loadData import get_papers_json
-from connectES import connect_elasticsearch
+from .loadData import get_papers_json
+from .connectES import connect_elasticsearch
 import os
 
 class paperHandler:
@@ -10,7 +10,7 @@ class paperHandler:
         self.dataset = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
         self.file = 'arxiv-metadata-oai-snapshot.json'
 
-    def index_papers(self, batch_size=1000):
+    def index_papers(self, batch_size=20000):
         print("Indexing papers...")
         papers_generator = get_papers_json(self.dataset, self.file)
 
