@@ -7,7 +7,7 @@ function SearchResultContainer({ searchState, searchResults }) {
     return (
         <Box
             sx={{
-                width: "50%",
+                width: "60%",
                 height: "80vh",
                 p: 3,
                 border: "1px solid rgba(0,0,0,0.3)",
