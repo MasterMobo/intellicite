@@ -25,11 +25,11 @@ function SentimentTag({ sentiment, ...rest }) {
             <Box aria-describedby={id} onClick={handleClick}>
                 {(() => {
                     switch (getMainSentiment(sentiment)) {
-                        case "positive":
+                        case "ENTAILMENT":
                             return <PositiveSentimentTag size="medium" />;
-                        case "negative":
+                        case "CONTRADICTION":
                             return <NegativeSentimentTag size="medium" />;
-                        case "neutral":
+                        case "NEUTRAL":
                             return <NeutralSentimentTag size="medium" />;
                         default:
                             return <div></div>;

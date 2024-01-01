@@ -7,11 +7,11 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 function PaperFooter({ paper }) {
     return (
         <Box sx={{ mt: 1, mb: 0, display: "flex", gap: 2 }}>
-            <IconButton color="primary" sx>
+            <IconButton color="primary">
                 <FavoriteIcon />
             </IconButton>
 
-            <IconButton color="primary" sx>
+            <IconButton color="primary">
                 <DownloadIcon />
             </IconButton>
 
