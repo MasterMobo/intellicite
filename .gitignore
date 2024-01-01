@@ -2,4 +2,9 @@
 myenv
 /venv
 
+node_modules
+
+paper-dataset.json
+data.json
+
 __pycache__

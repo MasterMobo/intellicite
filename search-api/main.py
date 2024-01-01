@@ -1,10 +1,5 @@
-from text_preprocessing import *
-from search import *
+from flask import Flask
 
-userQuery = "Text processing in Python is interesting and important for NLP tasks. Check out https://example.com for more info!"
-
-keywords = preprocess_text(userQuery)
-
-papers = search_papers(keywords.join(" "))
-
-# FIXME This is still under construction
+from routes.user import user_route
+app = Flask(__name__)
+app.register_blueprint(user_route, url_prefix="/api/v1")
