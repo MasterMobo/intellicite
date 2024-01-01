@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import UserModel, { UserDoc } from "../models/userSchema";
-import { generateToken } from "./auth/jwt";
+import UserModel, { UserDoc } from "../../models/userSchema";
+import { generateToken } from "./jwt";
 const registerUser = async (req: Request, res: Response) => {
   const {
       username,

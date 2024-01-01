@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
-import { generateToken, verifyToken } from "./auth/jwt";
-import UserModel, { UserDoc } from "../models/userSchema";
+import { generateToken, verifyToken } from "./jwt";
+import UserModel, { UserDoc } from "../../models/userSchema";
 
 const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
