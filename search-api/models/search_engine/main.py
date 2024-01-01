@@ -1,5 +1,6 @@
+# main.py:
 from connectES import connect_elasticsearch
-from loadData import get_papers_json
+from paperHandler import paperHandler
 
 index_mapping = {
     "mappings": {
@@ -16,7 +17,6 @@ index_mapping = {
     }
 }
 
-
 class SearchEngine:
     def __init__(self):
         self.es_client = connect_elasticsearch()
@@ -26,31 +26,13 @@ class SearchEngine:
 
         if not self.es_client.indices.exists(index=self.index_name):
             self.create_index()
-            self.index_papers()
+            self.paper_manager = paperHandler(self.es_client, self.index_name, self.index_mapping)
+            self.paper_manager.index_papers()
 
     def create_index(self):
         print("Creating index...")
         self.es_client.indices.create(index=self.index_name, body=self.index_mapping, ignore=400)
         print("Index created")
-
-    def index_papers(self, batch_size=1000):
-        print("Indexing papers...")
-        papers_generator = get_papers_json()
-
-        papers_batch = []
-        for paper in papers_generator:
-            papers_batch.append({"index": {"_index": self.index_name}})
-            papers_batch.append(paper)
-
-            if len(papers_batch) >= 2 * batch_size:
-                self.es_client.bulk(body=papers_batch, refresh=True)
-                papers_batch = []
-
-        # Index any remaining papers
-        if papers_batch:
-            self.es_client.bulk(body=papers_batch, refresh=True)
-
-        print("Finished indexing papers")
 
     def search_papers(self, user_query):
         search_query = {
@@ -64,7 +46,6 @@ class SearchEngine:
 
         results = self.es_client.search(index=self.index_name, body=search_query, size=self.max_search_results)
         return [result["_source"] for result in results['hits']['hits']]
-
 
 if __name__ == "__main__":
     search = SearchEngine()
