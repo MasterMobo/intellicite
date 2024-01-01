@@ -17,8 +17,8 @@ import NeutralSentimentTag from "./NeutralSentimentTag";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 const getSentimentScore = (target, sentiment) => {
     for (let i = 0; i < sentiment.length; i++) {
-        if (sentiment[i].label == target) {
-            return sentiment[i].score;
+        if (sentiment[i].label === target) {
+            return sentiment[i].score.toFixed(2);
         }
     }
 
