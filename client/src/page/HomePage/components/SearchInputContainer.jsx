@@ -5,13 +5,14 @@ import {
     CircularProgress,
 } from "@mui/material";
 
-function SearchInputContainer({ handleSearch, searchState }) {
+function SearchInputContainer({ handleSearch, searchState, setSearchText }) {
     return (
         <Stack direction="column" spacing={2} width={"50%"} maxHeight={"100%"}>
             <TextareaAutosize
                 aria-label="minimum height"
                 minRows={10}
                 placeholder="Place your text here"
+                onChange={(e) => setSearchText(e.target.value)}
             />
             <Button
                 variant="contained"

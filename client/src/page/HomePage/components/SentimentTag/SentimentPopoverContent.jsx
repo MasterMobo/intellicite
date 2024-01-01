@@ -33,9 +33,9 @@ function SentimentPopoverContent({ sentiment }) {
 
     useEffect(() => {
         setSentimentScore({
-            positive: getSentimentScore("positive", sentiment),
-            negative: getSentimentScore("negative", sentiment),
-            neutral: getSentimentScore("neutral", sentiment),
+            positive: getSentimentScore("ENTAILMENT", sentiment),
+            negative: getSentimentScore("CONTRADICTION", sentiment),
+            neutral: getSentimentScore("NEUTRAL", sentiment),
         });
     }, []);
 

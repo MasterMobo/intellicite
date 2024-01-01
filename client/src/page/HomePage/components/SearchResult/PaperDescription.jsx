@@ -4,9 +4,7 @@ import TagList from "./TagList";
 function PaperDescription({ paper }) {
     return (
         <Stack spacing={1}>
-            <Typography variant="caption">
-                Authors: {paper.authors.join(", ")}
-            </Typography>
+            <Typography variant="caption">Authors: {paper.authors}</Typography>
             {paper.journal && (
                 <Typography variant="caption">
                     Journal: {paper.journal}{" "}
@@ -15,7 +13,7 @@ function PaperDescription({ paper }) {
             {paper.doi && (
                 <Typography variant="caption">DOI: {paper.doi}</Typography>
             )}
-            {paper.tags && <TagList tags={paper.tags}></TagList>}
+            {paper.catagories && <TagList tags={paper.catagories}></TagList>}
         </Stack>
     );
 }

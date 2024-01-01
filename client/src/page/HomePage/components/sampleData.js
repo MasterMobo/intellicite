@@ -14,11 +14,11 @@ const papers = [
         url: "https://www.google.com",
         sentiment: [
             {
-                label: "positive",
+                label: "ENTAILMENT",
                 score: 0.7,
             },
             {
-                label: "negative",
+                label: "CONTRADICTION",
                 score: 0.1,
             },
             {
@@ -26,8 +26,12 @@ const papers = [
                 score: 0.2,
             },
         ],
-        tags: ["Machine Learning", "Artificial Intelligence", "Innovation"],
-        journal: "Journal of AI Research",
+        categories: [
+            "Machine Learning",
+            "Artificial Intelligence",
+            "Innovation",
+        ],
+        journal_ref: "Journal_ref of AI Research",
         relevance: 0.92,
         doi: "10.1234/1234.1234",
     },
@@ -45,26 +49,26 @@ const papers = [
 
         sentiment: [
             {
-                label: "positive",
+                label: "ENTAILMENT",
                 score: 0.2,
             },
             {
-                label: "negative",
+                label: "CONTRADICTION",
                 score: 0.6,
             },
             {
-                label: "neutral",
+                label: "NEUTRAL",
                 score: 0.1,
             },
         ],
-        tags: [
+        categories: [
             "Bioinformatics",
             "Genomics",
             "Personalized Medicine",
             "Bioinformatics",
             "Personalized Medicine",
         ],
-        journal: "Journal of Bioinformatics",
+        journal_ref: "Journal_ref of Bioinformatics",
         relevance: 0.88,
         doi: "10.1234/1234.1234",
     },
@@ -82,11 +86,11 @@ const papers = [
         url: "https://www.google.com",
         sentiment: [
             {
-                label: "positive",
+                label: "ENTAILMENT",
                 score: 0.1,
             },
             {
-                label: "negative",
+                label: "CONTRADICTION",
                 score: 0.1,
             },
             {
@@ -94,8 +98,8 @@ const papers = [
                 score: 0.7,
             },
         ],
-        tags: ["Green Technologies", "Environmental Sustainability"],
-        journal: "Journal of Environmental Science",
+        categories: ["Green Technologies", "Environmental Sustainability"],
+        journal_ref: "Journal_ref of Environmental Science",
         relevance: 0.85,
         doi: "10.1234/1234.1234",
     },
