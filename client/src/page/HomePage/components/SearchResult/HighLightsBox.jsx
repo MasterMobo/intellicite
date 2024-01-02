@@ -14,25 +14,9 @@ function HighlightsBox({ highlights }) {
             }}
         >
             {highlights.map((highlight, index) => {
-                if (index === 0) {
-                    return (
-                        <Typography variant="body2" key={index}>
-                            &quot;{highlight}...
-                        </Typography>
-                    );
-                }
-
-                if (index === highlights.length - 1) {
-                    return (
-                        <Typography variant="body2" key={index}>
-                            {highlight}...&quot;
-                        </Typography>
-                    );
-                }
-
                 return (
                     <Typography variant="body2" key={index}>
-                        ...{highlight}...
+                        {highlight}...
                     </Typography>
                 );
             })}
