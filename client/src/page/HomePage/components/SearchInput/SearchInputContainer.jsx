@@ -29,6 +29,7 @@ function SearchInputContainer({ handleSearch, searchState, setSearchText }) {
                     <TextField
                         aria-label="minimum height"
                         minRows={10}
+                        maxRows={35}
                         multiline
                         placeholder="Place your query here"
                         onChange={(e) => setSearchText(e.target.value)}
