@@ -23,14 +23,19 @@ function SearchContainer() {
             return;
         }
 
-        setSearchState("loading");
-        const response = await axios.post(BASE_URL, { user_input: searchText });
+        await setSearchState("loading");
 
-        if (response.status === 200) {
+        try {
+            const response = await axios.post(BASE_URL, {
+                user_input: searchText,
+            });
             console.log(response.data);
             await setSearchResults(response.data);
-        } else {
-            console.log("Error", response);
+        } catch (error) {
+            console.log(error);
+
+            // FIXME: Need to handle error
+            await setSearchResults([]);
         }
 
         await setSearchState("done");
