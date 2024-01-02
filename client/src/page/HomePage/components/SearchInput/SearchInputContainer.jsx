@@ -1,19 +1,29 @@
+import { useState } from "react";
 import { Button, Stack, CircularProgress, TextField, Box } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
 import { Resizable } from "re-resizable";
 
 function SearchInputContainer({ handleSearch, searchState, setSearchText }) {
     const { isTablet } = useResponsive();
+    const [defaultWidth, setDefaultWidth] = useState(
+        localStorage.getItem("searchInputWidth") || "50%"
+    );
+
+    const handleResizeStop = (e, direction, ref) => {
+        // Save the new width to local storage
+        localStorage.setItem("searchInputWidth", ref.style.width);
+    };
 
     return (
         <Resizable
             defaultSize={{
-                width: "50%",
+                width: defaultWidth,
             }}
             maxWidth={isTablet ? "100%" : "70%"}
             minWidth={isTablet ? "100%" : "20%"}
             enable={isTablet ? {} : { right: true }}
             handleStyles={{ right: { width: "5px", right: 0 } }}
+            onResizeStop={handleResizeStop}
         >
             <Stack
                 direction={"row"}
