@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, IconButton, Link } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import DownloadIcon from "@mui/icons-material/Download";

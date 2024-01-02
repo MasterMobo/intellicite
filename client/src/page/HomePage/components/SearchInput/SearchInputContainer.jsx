@@ -4,14 +4,22 @@ import {
     TextareaAutosize,
     CircularProgress,
 } from "@mui/material";
+import useResponsive from "../../hooks/useResponsive";
 
 function SearchInputContainer({ handleSearch, searchState, setSearchText }) {
+    const { isTablet } = useResponsive();
+
     return (
-        <Stack direction="column" spacing={2} width={"40%"} maxHeight={"100%"}>
+        <Stack
+            direction="column"
+            spacing={2}
+            width={isTablet ? "100" : "40%"}
+            maxHeight={"100%"}
+        >
             <TextareaAutosize
                 aria-label="minimum height"
                 minRows={10}
-                placeholder="Place your text here"
+                placeholder="Place your query here"
                 onChange={(e) => setSearchText(e.target.value)}
             />
             <Button

@@ -1,7 +1,7 @@
-import { Typography, Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-function SearchResultPlaceholder() {
+function SearchResultsNoResult() {
     return (
         <Box
             sx={{
@@ -13,12 +13,13 @@ function SearchResultPlaceholder() {
             }}
         >
             <SearchIcon sx={{ fontSize: 80 }}></SearchIcon>
-            <Typography variant="h6">Search Results</Typography>
+
+            <Typography variant="h6">No results found</Typography>
             <Typography variant="caption">
-                Your search results will be displayed here
+                Nothing matched your search query, maybe try something else?
             </Typography>
         </Box>
     );
 }
 
-export default SearchResultPlaceholder;
+export default SearchResultsNoResult;
