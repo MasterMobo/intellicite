@@ -28,11 +28,23 @@ function SearchInputContainer({ handleSearch, searchState, setSearchText }) {
                 >
                     <TextField
                         aria-label="minimum height"
-                        minRows={10}
-                        maxRows={35}
+                        // minRows={isTablet ? 10 : 30}
+                        maxRows={30}
                         multiline
                         placeholder="Place your query here"
                         onChange={(e) => setSearchText(e.target.value)}
+                        sx={{
+                            bgcolor: "white",
+                        }}
+                        inputProps={{
+                            style: {
+                                height: isTablet ? "20vh" : "70vh",
+                                minHeight: "20vh",
+                                maxHeight: isTablet ? "20vh" : "70vh",
+                                overflowY: "auto",
+                                resize: "vertical",
+                            },
+                        }}
                     />
                     <Button
                         variant="contained"
