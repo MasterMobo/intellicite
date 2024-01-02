@@ -11,7 +11,7 @@ function SearchResultContainer({ searchState, searchResults }) {
     return (
         <Box
             sx={{
-                width: isTablet ? "100%" : "60%",
+                width: "100%",
                 height: "80vh",
             }}
         >
