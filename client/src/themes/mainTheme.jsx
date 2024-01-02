@@ -118,7 +118,6 @@ const mainTheme = createTheme({
             "Arial",
             "sans-serif",
         ].join(","),
-        fontSize: 16,
 
         allVariants: {
             letterSpacing: 0,

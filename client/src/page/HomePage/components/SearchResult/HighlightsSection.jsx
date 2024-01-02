@@ -1,7 +1,6 @@
-import { Stack, Tooltip, Typography, Chip, Box, Paper } from "@mui/material";
+import { Stack, Tooltip, Typography, Box } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import HighlightsBox from "./HighLightsBox";
-import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
 import SentimentTag from "../SentimentTag/SentimentTag";
 
 function HighlightsSection({ paper }) {
