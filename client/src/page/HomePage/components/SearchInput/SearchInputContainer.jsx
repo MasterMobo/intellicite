@@ -1,10 +1,4 @@
-import {
-    Button,
-    Stack,
-    TextareaAutosize,
-    CircularProgress,
-    Box,
-} from "@mui/material";
+import { Button, Stack, CircularProgress, TextField, Box } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
 import { Resizable } from "re-resizable";
 
@@ -32,9 +26,10 @@ function SearchInputContainer({ handleSearch, searchState, setSearchText }) {
                     width={"100%"}
                     maxHeight={"100%"}
                 >
-                    <TextareaAutosize
+                    <TextField
                         aria-label="minimum height"
                         minRows={10}
+                        multiline
                         placeholder="Place your query here"
                         onChange={(e) => setSearchText(e.target.value)}
                     />
