@@ -1,5 +1,6 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Divider } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import SearchGuide from "./SearchGuide";
 
 function SearchResultPlaceholder() {
     return (
@@ -17,6 +18,8 @@ function SearchResultPlaceholder() {
             <Typography variant="caption">
                 Your search results will be displayed here
             </Typography>
+            <Divider sx={{ mt: 5, mb: 3 }} style={{ width: "100%" }}></Divider>
+            <SearchGuide></SearchGuide>
         </Box>
     );
 }
