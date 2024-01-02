@@ -43,7 +43,7 @@ function SearchContainer() {
                 spacing={2}
                 height={"100%"}
                 pt={"10vh"}
-                gap={5}
+                gap={1}
             >
                 <SearchInputContainer
                     searchState={searchState}
