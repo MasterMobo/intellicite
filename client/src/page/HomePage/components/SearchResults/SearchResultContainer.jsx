@@ -2,12 +2,9 @@ import SearchResultPlaceholder from "./SearchResultPlaceholder";
 import LoadingSkeleton from "./LoadingSkeleton";
 import SearchResultDoneContainer from "./SearchResultDoneContainer";
 import { Box } from "@mui/material";
-import useResponsive from "../../hooks/useResponsive";
 import SearchResultsNoResult from "./SearchResultsNoResult";
 
 function SearchResultContainer({ searchState, searchResults }) {
-    const { isTablet } = useResponsive();
-
     return (
         <Box
             sx={{
