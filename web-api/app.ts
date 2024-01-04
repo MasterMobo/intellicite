@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import { authenticateToken } from "./controller/authController";
 import authRouter from "./routes/authRoutes";
-import inputRouter from "./routes/inputRoutes";
+import userRouter from "./routes/userRoutes";
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/v1/auth", authRouter)
-app.use("/api/v1/user", authenticateToken, inputRouter)
+app.use("/api/v1/user", authenticateToken, userRouter)
 
 // Ininiate app
 const start = async () => {
