@@ -5,7 +5,7 @@ services:
       context: ./web-api
       dockerfile: Dockerfile
     volumes:
-      - ./server/src:/app/src:ro
+      - ./web-api:/app/src:ro
       - /app/node_modules
     environment:
       - NODE_ENV=development

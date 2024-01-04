@@ -16,7 +16,7 @@ const processUserSave = async (req: Request, res: Response) => {
 
   let articleBody: string = req.body
   user.savedArticles.push(articleBody)
-  user.save()
+  await user.save()
   res.status(200).json({user})
 
 }
