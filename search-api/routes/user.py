@@ -44,6 +44,8 @@ def process():
             "categories": paper["categories"],
             "journal-ref": paper["journal-ref"],
             "submitter": paper["submitter"],
+            "url": f"https://arxiv.org/abs/{paper['id']}"
+            "download_url": f"https://arxiv.org/pdf/{paper['id']}"
         })
 
     return jsonify(response), 200
