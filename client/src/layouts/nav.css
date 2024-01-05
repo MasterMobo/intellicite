@@ -1,9 +1,24 @@
 .navbar-custom{
-    width: 100%;
+    position: fixed;
+  top: 0;
+  right: -1000px;
+    width: 300px;
+    background-color: #fff;
     height: 100vh;
     border: 1px solid black;
     padding-right: 0;
+    transition: right 0.5s ease;
+
+    overflow: hidden;
 }
+
+.navbar-custom.open {
+    right: 0px;
+  }
+
+  .navbar-custom.closed {
+    right: -1000px;
+  }
 
 .navbar-custom .icon{
     display: flex;
@@ -127,3 +142,38 @@ a:hover{
     right: 50px;
     font-size: 40px;
 }
+
+.header img{
+    height: 50px;
+    width: 50px;
+    margin: 20px;
+    position: absolute;
+    top: 0;
+}
+
+.sidebar {
+    transition: width 0.5s ease; /* Add transition property for width change */
+  }
+  
+  .sidebar.open {
+    width: 300px; /* Adjust the width as needed */
+  }
+
+  /* YourComponent.css */
+
+.footer {
+    width: 100%;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    background-color: #333; /* Set background color */
+    color: #fff; /* Set text color */
+    text-align: center; /* Center-align text */
+    padding: 20px; /* Add padding for better appearance */
+    margin-top: 20px;
+  }
+  
+  .footer p {
+    margin: 0; /* Remove default margin for the paragraph */
+  }
+  
