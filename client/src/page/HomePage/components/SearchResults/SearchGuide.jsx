@@ -66,7 +66,7 @@ function SearchGuideAccordianItem({
 
 function SearchGuide() {
     return (
-        <Stack sx={{ overflowY: "auto" }}>
+        <Stack sx={{ overflowY: "auto", maxHeight: "50%" }}>
             <Typography variant="h6" mb={2}>
                 How do I use this?
             </Typography>
