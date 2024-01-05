@@ -23,7 +23,10 @@ function MainLayout({ children }) {
                     </div>
                     )
                }
-           </div>
+            </div>
+            <div className="footer">
+                <p>&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+            </div>
         </div>
      );
 }
