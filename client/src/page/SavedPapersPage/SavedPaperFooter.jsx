@@ -49,7 +49,12 @@ function SavedPaperFooter({ paper }) {
                 </DialogActions>
             </Dialog>
 
-            <IconButton color="primary">
+            <IconButton
+                color="primary"
+                href={paper.download_url}
+                target="_blank"
+                rel="noopener"
+            >
                 <DownloadIcon />
             </IconButton>
 
