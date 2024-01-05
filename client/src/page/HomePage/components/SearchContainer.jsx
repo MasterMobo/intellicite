@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import { Container, Stack } from "@mui/material";
 import SearchInputContainer from "./SearchInput/SearchInputContainer";
 import SearchResultContainer from "./SearchResults/SearchResultContainer";
-import { papers } from "./sampleData";
 import axios from "axios";
 import useResponsive from "../hooks/useResponsive";
 
 // FIXME: This is should be an environment variable
 const BASE_URL = "http://139.59.243.2:5000/api/v1/process";
 
+const SearchContext = createContext();
+
 function SearchContainer() {
     const [searchState, setSearchState] = useState("initial");
     const [searchText, setSearchText] = useState("");
-    const [searchResults, setSearchResults] = useState(papers);
+    const [searchResults, setSearchResults] = useState([]);
     const { isTablet } = useResponsive();
 
     const handleSearch = async () => {
@@ -42,27 +43,34 @@ function SearchContainer() {
     };
 
     return (
-        <Container maxWidth="xl" sx={{ minHeight: "100vh" }}>
-            <Stack
-                direction={isTablet ? "column" : "row"}
-                spacing={2}
-                height={"100%"}
-                pt={"10vh"}
-                gap={1}
-            >
-                <SearchInputContainer
-                    searchState={searchState}
-                    handleSearch={handleSearch}
-                    setSearchText={setSearchText}
-                ></SearchInputContainer>
+        <SearchContext.Provider
+            value={{
+                searchState,
+                setSearchState,
+                searchText,
+                setSearchText,
+                handleSearch,
+            }}
+        >
+            <Container maxWidth="xl" sx={{ minHeight: "100vh" }}>
+                <Stack
+                    direction={isTablet ? "column" : "row"}
+                    spacing={2}
+                    height={"100%"}
+                    pt={"10vh"}
+                    gap={1}
+                >
+                    <SearchInputContainer></SearchInputContainer>
 
-                <SearchResultContainer
-                    searchState={searchState}
-                    searchResults={searchResults}
-                ></SearchResultContainer>
-            </Stack>
-        </Container>
+                    <SearchResultContainer
+                        searchState={searchState}
+                        searchResults={searchResults}
+                    ></SearchResultContainer>
+                </Stack>
+            </Container>
+        </SearchContext.Provider>
     );
 }
 
 export default SearchContainer;
+export { SearchContext };

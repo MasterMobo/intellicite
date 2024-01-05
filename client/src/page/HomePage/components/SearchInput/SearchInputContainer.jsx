@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Button, Stack, CircularProgress, TextField, Box } from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
 import { Resizable } from "re-resizable";
+import { SearchContext } from "../SearchContainer";
 
-function SearchInputContainer({ handleSearch, searchState, setSearchText }) {
+function SearchInputContainer() {
+    const { searchState, setSearchText, handleSearch } =
+        useContext(SearchContext);
+
     const { isTablet } = useResponsive();
     const [defaultWidth, setDefaultWidth] = useState(
         localStorage.getItem("searchInputWidth") || "50%"
