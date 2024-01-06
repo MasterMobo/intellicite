@@ -3,12 +3,11 @@
   top: 0;
   right: -1000px;
     width: 300px;
-    background-color: #fff;
+    background-color: #fef8f0;
     height: 100vh;
     border: 1px solid black;
     padding-right: 0;
     transition: right 0.5s ease;
-
     overflow: hidden;
 }
 
@@ -24,7 +23,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    margin: 10px 30px;
+    margin: 10px 10px;
     cursor: pointer;
 }
 
@@ -87,8 +86,15 @@ a:hover{
 
 .menu-list .item{
     text-transform: uppercase;
-    margin: 20px 0;
+    margin: 10px 0;
     cursor: pointer;
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu-list .item:hover{
+    background-color: #f66b1d;
 }
 
 .form-result {
@@ -138,9 +144,9 @@ a:hover{
 
 .icon-top{
     position: absolute;
-    top: 20px;
+    top: 70px;
     right: 50px;
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .header img{
@@ -156,14 +162,13 @@ a:hover{
   }
   
   .sidebar.open {
-    width: 300px; /* Adjust the width as needed */
+    width: 250px; /* Adjust the width as needed */
   }
 
   /* YourComponent.css */
 
 .footer {
-    width: 100%;
-    position: sticky;
+    width:100%;
     left: 0;
     bottom: 0;
     background-color: #333; /* Set background color */
@@ -177,3 +182,32 @@ a:hover{
     margin: 0; /* Remove default margin for the paragraph */
   }
   
+  .header{
+    background-color: #f66b1d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 9;
+  }
+
+  .header h2{
+    font-size: 25px;
+    font-weight: 500;
+    margin: 0;
+    color: #fff;
+  }
+
+  .header2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 5px;
+  }
+
+  .header2 h2{
+    font-size: 20px;
+    padding: 0 20px;
+  }
