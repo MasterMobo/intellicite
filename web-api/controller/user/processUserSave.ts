@@ -3,20 +3,23 @@ import UserModel, { UserDoc } from "../../models/userSchema"
 
 const processUserSave = async (req: Request, res: Response) => {
   const userId = req.params
+  const { articleBody } = req.body
 
   if (!userId) {
     throw new Error("Invalid user ID")
   }
 
-  const user: UserDoc | null = await UserModel.findById(userId)
+  const user: UserDoc | null = await UserModel.findOneAndUpdate(
+    { _id: req.body.id }, 
+    { $push: { savedArticles: articleBody} },
+   function (error, success) {
+         if (error) {
+             console.log(error);
+         } else {
+             console.log(success);
+         }
+     });
 
-  if (!user) {
-    throw new Error(`User with ID: ${userId} does not exist!`)
-  }
-
-  let articleBody: string = req.body
-  user.savedArticles.push(articleBody)
-  await user.save()
   res.status(200).json({user})
 
 }

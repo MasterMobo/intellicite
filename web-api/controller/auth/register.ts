@@ -7,12 +7,12 @@ const registerUser = async (req: Request, res: Response) => {
       password,
       email,
   } = req.body;
-
-  let user: UserDoc
+  
+  let user: UserDoc | null
   user = new UserModel({
-    userName: username,
-    password,
-    email
+    username: username,
+    password: password,
+    email: email
   })
 
   await user.save()

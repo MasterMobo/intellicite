@@ -1,11 +1,11 @@
 version: '3'
 services:
-  server:
+  express-app:
     build: 
-      context: ./web-api
+      context: .
       dockerfile: Dockerfile
     volumes:
-      - ./web-api:/app/src:ro
+      - .:/app/src:ro
       - /app/node_modules
     environment:
       - NODE_ENV=development

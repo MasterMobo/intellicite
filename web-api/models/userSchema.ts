@@ -10,7 +10,7 @@ interface UserDoc extends Document {
 
 }
 
-const UserSchema: Schema = new Schema({
+const UserSchema: Schema = new Schema<UserDoc>({
   username: { 
     type: String, required: true, unique: true 
   },
@@ -21,7 +21,7 @@ const UserSchema: Schema = new Schema({
     type: String, required: true 
   },
   savedArticles: { 
-    type: [String], default: [] 
+    type: [{type: String}], default: [] 
   },
 });
 
@@ -51,4 +51,4 @@ UserSchema.methods.comparePassword = async function (
 const UserModel = mongoose.model<UserDoc>('User', UserSchema);
 
 export default UserModel;
-export {UserDoc}
+export { UserDoc }
