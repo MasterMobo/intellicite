@@ -14,6 +14,7 @@ function NavBar({ isOpenMenu, toggleMenu }) {
     const [isSignUp, setIsSignUp] = useState(false);
     const [signUpForm, setSignUpForm] = useState({
         name: '',
+        email:'',
         password: '',
         confirmPass: ''
     })
@@ -61,7 +62,7 @@ function NavBar({ isOpenMenu, toggleMenu }) {
     }
 
     const handleSignUpp = () => {
-        if (!signUpForm.name || !signUpForm.password || !signUpForm.confirmPass) {
+        if (!signUpForm.name || !signUpForm.email || !signUpForm.password || !signUpForm.confirmPass) {
             toast.error("Please enter your information to sign up");
             return;
         } else if (signUpForm.password != signUpForm.confirmPass) {
@@ -83,7 +84,7 @@ function NavBar({ isOpenMenu, toggleMenu }) {
     <div className={`navbar-custom ${isOpenMenu ? 'open' : 'close'}`}>
       <div
         className="icon"
-        style={{ fontSize: "50px" }}
+        style={{ fontSize: "35px", marginTop: "75px" }}
         onClick={() => toggleMenu()}
       >
         <i className="fa-solid fa-bars"></i>
@@ -96,11 +97,10 @@ function NavBar({ isOpenMenu, toggleMenu }) {
                           src="https://static.canva.com/web/images/87e22a62965f141aa08e93699b0b3527.jpg"
                           alt=""
                         />
-                        <h1>(user name)</h1>
+                        <h1>{JSON.parse(localStorage.getItem("user"))?.name}</h1>
                         <ul className="menu-list">
                           <li className="item">Main Page</li>
                           <li className="item">Your saved papers</li>
-                          <li className="item">Contact</li>
                           <li className="item" onClick={handleLogout}>Logout</li>
                         </ul>
                         </div>
@@ -119,6 +119,17 @@ function NavBar({ isOpenMenu, toggleMenu }) {
                                         className="input-text"
                                       />
                                     </div>
+
+                                    <div className="form-input">
+                                        <label htmlFor="">Enter your email</label>
+                                        <input
+                                          type="email"
+                                          value={signUpForm.email}
+                                          onChange={(e) => onChangeSignUpInput("email", e.target.value)}
+                                          className="input-text"
+                                        />
+                                      </div>
+
                                     <div className="form-input">
                                       <label htmlFor="">Enter your password</label>
                                       <input
@@ -127,22 +138,21 @@ function NavBar({ isOpenMenu, toggleMenu }) {
                                         onChange={(e) => onChangeSignUpInput("password", e.target.value)}
                                         className="input-text"
                                       />
-                                          </div>
+                                      </div>
                                           
-                                          <div className="form-input">
-                                      <label htmlFor="">Enter Confirm password</label>
-                                      <input
-                                        type="password"
-                                        value={signUpForm.confirmPass}
-                                        onChange={(e) => onChangeSignUpInput("confirmPass", e.target.value)}
-                                        className="input-text"
-                                      />
-                                    </div>
+                                      <div className="form-input">
+                                        <label htmlFor="">Enter Confirm password</label>
+                                        <input
+                                          type="password"
+                                          value={signUpForm.confirmPass}
+                                          onChange={(e) => onChangeSignUpInput("confirmPass", e.target.value)}
+                                          className="input-text"
+                                        />
+                                      </div>
                       
                                     <div className="action">
-                                      <button className="button-sign" onClick={handleSignUpp}>SignUP</button>
-                                      <a href="" onClick={()=> setIsSignUp(false)}>SignIn</a>
-                                      <a href="">Forgot password?</a>
+                                      <button className="button-sign" onClick={handleSignUpp}>Sign Up</button>
+                                      <a href="" onClick={()=> setIsSignUp(false)}>Sign In</a>
                                     </div>
                                   </div>
                                   ): (
@@ -167,9 +177,8 @@ function NavBar({ isOpenMenu, toggleMenu }) {
                                     </div>
                       
                                     <div className="action">
-                                      <button className="button-sign" onClick={handleLogin}>SignIn</button>
-                                      <a href="#" onClick={handleSignUp}>SignUp</a>
-                                      <a href="">Forgot password?</a>
+                                      <button className="button-sign" onClick={handleLogin}>Sign In</button>
+                                      <a href="#" onClick={handleSignUp}>Sign Up</a>
                                     </div>
                                   </div>
                                   )
