@@ -1,4 +1,3 @@
-import "dotenv/config";
 const env = {
     // MONGO
     MONGO_USERNAME: process.env.MONGO_USERNAME || "foo",
