@@ -9,8 +9,6 @@ services:
       - PYTHONUNBUFFERED=1
       - KAGGLE_USERNAME=buidangkhoa
       - KAGGLE_KEY=495bdf9d087690b2212b0edfc6c10acc
-    ports:
-      - "80:5000"
     depends_on:
       - es01
     deploy:
@@ -43,6 +41,13 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+
+  load-balancer:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
 
 volumes:
   es_data:
