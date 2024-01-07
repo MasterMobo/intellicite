@@ -1,6 +1,8 @@
 import "express-async-errors";
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
 import { authenticateToken } from "./controller/authController";
 import { connectMongoDB } from "./db/mongoConnect";
@@ -17,6 +19,13 @@ const app = express();
 // Security
 app.set("trust proxy", 1);
 app.use(cors());
+app.use(helmet());
+app.use(
+    rateLimit({
+        windowMs: 10 * 60 * 1000, // 10 minutes
+        max: 100, // Limit each IP to 100 requests every windowMS
+    })
+);
 
 // Middlewares
 app.use(express.json());
