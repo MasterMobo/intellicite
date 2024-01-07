@@ -12,7 +12,7 @@ interface UserDoc extends Document {
 
 const UserSchema: Schema = new Schema<UserDoc>({
   username: { 
-    type: String, required: true, unique: true 
+    type: String, required: true
   },
   email: { 
     type: String, required: true, unique: true 
@@ -21,7 +21,7 @@ const UserSchema: Schema = new Schema<UserDoc>({
     type: String, required: true 
   },
   savedArticles: { 
-    type: [{type: String}], default: [] 
+    type: [String], default: [] 
   },
 });
 

@@ -1,9 +1,9 @@
 import 'dotenv/config'
 const env = {
   // MONGO
-  MONGO_USERNAME: process.env.MONGO_USERNAME,
-  MONGO_PASSWORD: process.env.MONGO_PASSWORD,
-  MONGO_DB_NAME: process.env.MONGO_DB_NAME,
+  MONGO_USERNAME: process.env.MONGO_USERNAME || "foo",
+  MONGO_PASSWORD: process.env.MONGO_PASSWORD || "bar",
+  MONGO_DB_NAME: process.env.MONGO_DB_NAME || "test",
 
   // JWT
   JWT_SECRET: process.env.JWT_SECRET,
