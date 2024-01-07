@@ -1,32 +1,27 @@
 import { Request, Response } from "express";
 import UserModel, { UserDoc } from "../../models/userSchema";
 import { generateToken } from "./jwt";
-import { validationResult } from "express-validator"
+import { validationResult } from "express-validator";
+import BadRequestError from "../../types/errors/BadRequestError";
+
 const registerUser = async (req: Request, res: Response) => {
-  // Run validator check
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
+    const { username, password, email } = req.body;
 
-  const {
-      username,
-      password,
-      email,
-  } = req.body;
-  
-  let user: UserDoc | null
-  user = await UserModel.create({
-    username: username,
-    password: password,
-    email: email
-  })
+    if (!username || !password || !email) {
+        throw new BadRequestError("Please provide all fields");
+    }
 
-  let userObject = user.toObject()
-  delete userObject.password
+    const user = await UserModel.create({
+        username: username,
+        password: password,
+        email: email,
+    });
 
-  const token = generateToken(userObject);
-  return res.status(200).json({ user: userObject, token });
+    // Remove password from returnUser
+    const { password: _, ...returnUser } = user.toObject();
+
+    const token = generateToken(returnUser);
+    return res.status(200).json({ returnUser, token });
 };
 
 export default registerUser;
