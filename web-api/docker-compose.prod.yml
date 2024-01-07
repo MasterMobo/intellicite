@@ -1,0 +1,32 @@
+version: '3'
+services:
+  server:
+    depends_on:
+      - database
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: any
+      update_config:
+        parallelism: 1
+        delay: 15s
+    environment:
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_DB_NAME=${MONGO_DB_NAME}
+
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRY=${JWT_EXPIRY}
+
+      - PORT=${PORT}
+      - MONGO_PORT=${MONGO_PORT}
+      - MONGO_IP=${MONGO_IP}
+    command: npm run dev
+    
+  database:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}

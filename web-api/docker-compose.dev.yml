@@ -1,0 +1,17 @@
+version: '3'
+services:
+  express-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app/src:ro
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGO_DB_NAME=test
+    command: npm run dev
+
+  database:
+    ports:
+      - "27017:27017"
