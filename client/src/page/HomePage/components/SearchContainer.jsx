@@ -6,7 +6,7 @@ import axios from "axios";
 import useResponsive from "../hooks/useResponsive";
 
 // FIXME: This is should be an environment variable
-const BASE_URL = "http://139.59.243.2:5000/api/v1/process";
+const BASE_URL = "https://www.intellicite.online/api/v1/process";
 
 const SearchContext = createContext();
 
