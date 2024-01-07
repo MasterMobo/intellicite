@@ -1,3 +1,5 @@
-import processUserInput from "./user/processUserInput";
-import processUserSave from "./user/processUserSave";
-export { processUserInput , processUserSave}
+import saveArticle from "./user/saveArticle";
+import searchArticle from "./user/searchArticles";
+import deleteSavedArticle from "./user/deleteSavedArticle";
+
+export { saveArticle, searchArticle, deleteSavedArticle };

@@ -1,10 +1,12 @@
-import express, { Router } from "express"
-import { processUserInput, processUserSave } from "../controller/userController"
-import { checkSchema } from "express-validator"
-import { userSaveValidator } from "../validators"
-const userRouter = express.Router()
+import express, { Router } from "express";
+import {
+    saveArticle,
+    searchArticle,
+    deleteSavedArticle,
+} from "../controller/userController";
+const userRouter = express.Router();
 
-userRouter.route("/input").post(processUserInput)
-userRouter.route("/input/save/:id").put(checkSchema(userSaveValidator),processUserSave)
+userRouter.route("/search").post(searchArticle);
+userRouter.route("/:userId/saved").post(saveArticle).delete(deleteSavedArticle);
 
-export default userRouter
+export default userRouter;

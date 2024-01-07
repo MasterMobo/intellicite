@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import UserModel, { UserDoc } from "../../models/userSchema";
+import UserModel from "../../models/userSchema";
 import { generateToken } from "./jwt";
-import { validationResult } from "express-validator";
 import BadRequestError from "../../types/errors/BadRequestError";
 
 const registerUser = async (req: Request, res: Response) => {
@@ -21,7 +20,11 @@ const registerUser = async (req: Request, res: Response) => {
     const { password: _, ...returnUser } = user.toObject();
 
     const token = generateToken(returnUser);
-    return res.status(200).json({ returnUser, token });
+    return res.status(200).json({
+        message: "Successfully created new user",
+        user: returnUser,
+        token,
+    });
 };
 
 export default registerUser;

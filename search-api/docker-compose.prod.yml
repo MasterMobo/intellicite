@@ -42,17 +42,6 @@ services:
       timeout: 10s
       retries: 120
 
-  load-balancer:
-    image: nginx:stable-alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/prod.conf:/etc/nginx/conf.d/prod.conf:ro
-      - /root/etc/certs/intellicite.online.crt:/etc/nginx/certs/fullchain.crt:ro
-      - /root/etc/certs/intellicite.online.key:/etc/nginx/certs/intellicite.online.key:ro
-
-
 volumes:
   es_data:
     driver: local

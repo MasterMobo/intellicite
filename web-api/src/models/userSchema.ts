@@ -5,7 +5,7 @@ interface UserDoc extends Document {
     username: string;
     email: string;
     password: string;
-    savedArticles: string[];
+    savedArticles: any[];
     comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
