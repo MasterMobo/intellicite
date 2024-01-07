@@ -46,10 +46,11 @@ services:
     image: nginx:stable-alpine
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/prod.conf:/etc/nginx/conf.d/prod.conf:ro
-      - ~/etc/certs/intellicite.online.crt:/etc/nginx/certs/intellicite.online.crt:ro
-      - ~/etc/certs/intellicite.online.key:/etc/nginx/certs/intellicite.online.key:ro
+      - /root/etc/certs/intellicite.online.crt:/etc/nginx/certs/intellicite.online.crt:ro
+      - /root/etc/certs/intellicite.online.key:/etc/nginx/certs/intellicite.online.key:ro
 
 
 volumes:
