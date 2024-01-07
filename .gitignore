@@ -1,6 +1,7 @@
 .idea
 myenv
 /venv
+.prettierignore
 
 node_modules
 

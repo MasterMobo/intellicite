@@ -1,21 +1,20 @@
 version: '3'
 services:
   express-app:
-    build: .
+    build: ./
+    image: mastermobo/intellicite:web-api-latest
     environment:
       - PORT=3000
     depends_on:
       - database
-    ports:
-      - "3000:3000"
-
+  
   database:
     image: mongo
     volumes:
       - mongo-db:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=foo
-      - MONGO_INITDB_ROOT_PASSWORD=bar
 
+  load-balancer:
+    image: nginx:stable-alpine
+      
 volumes:
   mongo-db:

@@ -1,11 +1,11 @@
 version: '3'
 services:
-  server:
+  express-app:
     depends_on:
       - database
     build: 
-      context: .
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: Dockerfile.prod
     deploy:
       replicas: 3
       restart_policy:
@@ -24,9 +24,17 @@ services:
       - PORT=${PORT}
       - MONGO_PORT=${MONGO_PORT}
       - MONGO_IP=${MONGO_IP}
-    command: npm run dev
     
   database:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+
+  load-balancer:
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/prod.conf:/etc/nginx/conf.d/prod.conf:ro
+      - /root/secrets/.certificate/meet-a-mentor.live.crt:/etc/nginx/ssl/meet-a-mentor.live.crt:ro
+      - /root/secrets/.certificate/meet-a-mentor.live.key:/etc/nginx/ssl/meet-a-mentor.live.key:ro

@@ -1,17 +1,25 @@
 version: '3'
 services:
   express-app:
+    depends_on:
+      - database
     build: 
-      context: .
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: Dockerfile.dev
     volumes:
-      - .:/app/src:ro
+      - ./src:/app/src:ro
       - /app/node_modules
-    environment:
-      - NODE_ENV=development
-      - MONGO_DB_NAME=test
+    env_file:
+      - ./.env
     command: npm run dev
 
-  database:
+  load-balancer:
     ports:
-      - "27017:27017"
+      - "3000:80"
+    volumes:
+      - ./nginx/dev.conf:/etc/nginx/conf.d/dev.conf:ro
+
+  database:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=foo
+      - MONGO_INITDB_ROOT_PASSWORD=bar
