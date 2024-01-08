@@ -141,8 +141,12 @@ function NavBar({ isOpenMenu, toggleMenu }) {
                                 {JSON.parse(localStorage.getItem("user"))?.name}
                             </h1>
                             <ul className="menu-list">
-                                <li className="item">Main Page</li>
-                                <li className="item">Your saved papers</li>
+                                <li className="item">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li className="item">
+                                    <a href="/saved">Your saved papers</a>
+                                </li>
                                 <li className="item" onClick={handleLogout}>
                                     Logout
                                 </li>
