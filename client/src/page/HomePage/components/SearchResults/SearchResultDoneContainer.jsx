@@ -9,6 +9,7 @@ function SearchResultDoneContainer({ results }) {
                 maxHeight: "100%",
                 overflowX: "hidden",
                 overflowY: "scroll",
+                pr: 1,
             }}
         >
             <Stack direction="column" spacing={2}>

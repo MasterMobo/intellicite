@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+//import PopUp from "src/layouts/PopUp.jsx";
 
 const LIST = [
     {
@@ -40,6 +41,13 @@ const LIST = [
 
 function SearchPage() {
     const [list, setList] = useState(LIST);
+
+    //const [isOpen, setIsOpen] = useState(true);
+
+    //const togglePopup = () => {
+        //setIsOpen(!isOpen)
+    //}
+
     return (
         <div className="search">
             <div className="search-form mt-5" style={{ paddingBottom: "40px" }}>
@@ -67,6 +75,11 @@ function SearchPage() {
                         </div>
                     </div>
                 ))}
+            // open brackets here
+                //isOpen && (
+                    // <PopUp togglePopup={togglePopup} />
+                //)
+            // close brackets here
             </div>
         </div>
     );

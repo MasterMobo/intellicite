@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-    Paper,
-    Divider,
-    Stack,
-    Collapse,
-    Box,
-    IconButton,
-    Icon,
-    Link,
-} from "@mui/material";
+import { Paper, Divider, Stack, Collapse } from "@mui/material";
 import HighlightsSection from "./HighlightsSection";
 import PaperDescription from "./PaperDescription";
 import PaperHeader from "./PaperHeader";
