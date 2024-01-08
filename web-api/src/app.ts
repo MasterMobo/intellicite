@@ -10,6 +10,7 @@ import errorHandler from "./middlewares/errorHandler";
 
 import authRouter from "./routes/authRoutes";
 import userRouter from "./routes/userRoutes";
+import searchRouter from "./routes/searchRoutes";
 
 import env from "./config/env";
 const { PORT } = env;
@@ -32,6 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.use("/api/v1/search", searchRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", authenticateToken, userRouter);
 
