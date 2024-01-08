@@ -1,26 +1,31 @@
 import { Request, Response } from "express";
-
-import { generateToken, verifyToken } from "./jwt";
-import UserModel, { UserDoc } from "../../models/userSchema";
+import { generateToken } from "./jwt";
+import UserModel from "../../models/userSchema";
+import {
+    BadRequestError,
+    NotFoundError,
+    UnauthorizedError,
+} from "../../types/errors";
 
 const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    let user: UserDoc | null
+    if (!email || !password) {
+        throw new BadRequestError("Please provide all fields");
+    }
 
-    user = await UserModel.findOne({ email })
+    const user = await UserModel.findOne({ email });
     if (!user) {
-      throw new Error("User not found");
+        throw new NotFoundError("User not found");
     }
     const validPassword = await user.comparePassword(password);
 
     if (!validPassword) {
-        throw new Error("Invalid password");
+        throw new UnauthorizedError("Invalid password");
     }
 
     // Remove password field from response
-    const userObject = user.toObject();
-    delete userObject.password;
+    const { password: _, ...userObject } = user.toObject();
 
     // Generate JWT
     const token = generateToken(userObject);

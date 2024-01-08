@@ -9,10 +9,10 @@ services:
       - PYTHONUNBUFFERED=1
       - KAGGLE_USERNAME=buidangkhoa
       - KAGGLE_KEY=495bdf9d087690b2212b0edfc6c10acc
-    ports:
-      - "80:5000"
     depends_on:
       - es01
+    ports:
+      - "5000:5000"
     deploy:
       replicas: 1
       restart_policy:

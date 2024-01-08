@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
-import 'dotenv/config'
 import env from "../../config/env";
-const { JWT_SECRET, JWT_EXPIRY } = env
+const { JWT_SECRET, JWT_EXPIRY } = env;
 
 const generateToken = (data: any) => {
     return jwt.sign(data, JWT_SECRET as string, { expiresIn: JWT_EXPIRY });
