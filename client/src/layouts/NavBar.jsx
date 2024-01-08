@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./nav.css";
 import { toast } from "react-toastify";
+import { LINK } from "../utils";
+import axios from "axios";
 
 function NavBar({ isOpenMenu, toggleMenu }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -19,21 +21,12 @@ function NavBar({ isOpenMenu, toggleMenu }) {
         confirmPass: ''
     })
     
-  const handleLogin = () => {
-      const i = JSON.parse(localStorage.getItem("user")) || {};
+  const handleLogin = async() => {
       if (!user.name || !user.password) {
         toast.error("Please enter your information to login");
         return;
-      }else  if (i.name != user.name || i.password != user.password) {
-        toast.error("Username or password does not match");
-        return;
       } else {
-        toast.success('Login success')
-          setIsActive({ ...user });
-          setUser({
-              name: '',
-              password : ''
-          })
+        await handleLoginAPI(user.name, user.password)
       }
   };
 
@@ -61,7 +54,7 @@ function NavBar({ isOpenMenu, toggleMenu }) {
         setIsSignUp(true);
     }
 
-    const handleSignUpp = () => {
+    const handleSignUpp = async() => {
         if (!signUpForm.name || !signUpForm.email || !signUpForm.password || !signUpForm.confirmPass) {
             toast.error("Please enter your information to sign up");
             return;
@@ -70,11 +63,46 @@ function NavBar({ isOpenMenu, toggleMenu }) {
                 return;
         }
         else {
-              localStorage.setItem("user", JSON.stringify(signUpForm));
-              toast.success('Signup success')
-            setIsSignUp(false);
+             
+          await handleSignUpAPI(signUpForm.name, signUpForm.email, signUpForm.password)
+
+
           }
+  }
+  
+  const handleLoginAPI = async(email,pass) =>{
+    try {
+      const res = await axios.post(`${LINK}/auth/login`, { email: email, password: pass });
+      if (res) {
+        toast.success('Login success')
+            setIsActive({ ...user });
+        setUser({
+          name: '',
+          password: ''
+        });
+
+        localStorage.setItem('user', JSON.stringify({user: res?.data.user, token : res?.data.token}))
+
+      }
+    } catch (error) {
+      toast.error('Login fails')
     }
+  }
+
+  const handleSignUpAPI = async(username,email,pass) =>{
+    try {
+      const res = await axios.post(`${LINK}/auth/register`, { username:username,email: email, password: pass });
+      if (res) {
+        toast.success('Register success')
+    setIsSignUp(false);
+    
+        localStorage.setItem('user', JSON.stringify({user: res?.data.user, token : res?.data.token}))
+
+      }
+    } catch (error) {
+      toast.error('Login fails')
+    }
+  }
     
     console.log('====================================');
     console.log(isActive);
@@ -158,9 +186,10 @@ function NavBar({ isOpenMenu, toggleMenu }) {
                                   ): (
                                     <div className="form-login">
                                     <div className="form-input">
-                                      <label htmlFor="">Enter your username</label>
+                                      <label htmlFor="">Enter your Email</label>
                                       <input
-                                        type="text"
+                            type="email"
+                            required
                                         value={user.name}
                                         onChange={(e) => onChangeInput("name", e.target.value)}
                                         className="input-text"
