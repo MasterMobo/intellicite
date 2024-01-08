@@ -16,9 +16,9 @@ const findPapers = (papers, query) => {
 const sortPapersByRecency = (papers, asc = true) => {
     return papers.sort((a, b) => {
         if (asc) {
-            return new Date(b.saveTime) - new Date(a.saveTime);
+            return new Date(b.saveDate) - new Date(a.saveDate);
         } else {
-            return new Date(a.saveTime) - new Date(b.saveTime);
+            return new Date(a.saveDate) - new Date(b.saveDate);
         }
     });
 };
