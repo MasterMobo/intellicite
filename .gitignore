@@ -2,6 +2,7 @@
 myenv
 /venv
 .prettierignore
+build
 
 node_modules
 
