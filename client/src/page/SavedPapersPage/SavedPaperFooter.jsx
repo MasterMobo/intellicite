@@ -14,6 +14,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import { getToken, getUser } from "../HomePage/utils/authUtils";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -22,10 +23,20 @@ function SavedPaperFooter({ paper }) {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`${apiUrl}/user/${paper.user_id}/saved`, {
-                article: paper,
+            const user = getUser();
+            const token = getToken();
+
+            await axios.delete(`${apiUrl}/user/${user._id}/saved`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                data: {
+                    article: paper,
+                },
             });
+
             await setDeleteDialogOpen(false);
+            window.location.reload();
         } catch (error) {
             console.log(error);
             await setDeleteDialogOpen(false);

@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { findPapers, sortPapersByRecency } from "./utils/savedPapersUtils";
 import SavedPaperList from "./SavedPaperList";
-import { isLoggedIn, getUser } from "../HomePage/utils/authUtils";
+import { isLoggedIn, getUser, getToken } from "../HomePage/utils/authUtils";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -34,11 +34,17 @@ function SavedPapersPage() {
 
         const fetchPapers = async () => {
             const user = getUser();
+            const token = getToken();
+
             const response = await axios.get(
-                `${apiUrl}/user/${user._id}/saved`
+                `${apiUrl}/user/${user._id}/saved`,
+                { headers: { Authorization: `Bearer ${token}` } }
             );
 
-            await setPapers(response.data);
+            console.log(response.data.articles);
+
+            await setPapers(response.data.articles);
+            await setCurrentPapers(response.data.articles);
         };
 
         fetchPapers();
