@@ -19,7 +19,7 @@ function SavedPaperQuery({ paper }) {
                     variant="subtitle2"
                     sx={{ alignSelf: "flex-end", ml: "auto" }}
                 >
-                    Saved on {new Date(paper.saveTime).toLocaleString()}
+                    Saved on {new Date(paper.saveDate).toLocaleString()}
                 </Typography>
             </Box>
             <Box

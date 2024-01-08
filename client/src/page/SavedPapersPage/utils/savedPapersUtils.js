@@ -1,11 +1,11 @@
 const findPapers = (papers, query) => {
     const results = papers.filter((paper) => {
         return (
-            paper.title.toLowerCase().includes(query.toLowerCase()) ||
-            paper.authors.toLowerCase().includes(query.toLowerCase()) ||
-            paper.abstract.toLowerCase().includes(query.toLowerCase()) ||
-            paper.userQuery.toLowerCase().includes(query.toLowerCase()) ||
-            paper.highlights.some((highlight) =>
+            paper.title?.toLowerCase().includes(query.toLowerCase()) ||
+            paper.authors?.toLowerCase().includes(query.toLowerCase()) ||
+            paper.abstract?.toLowerCase().includes(query.toLowerCase()) ||
+            paper.userQuery?.toLowerCase().includes(query.toLowerCase()) ||
+            paper.highlights?.some((highlight) =>
                 highlight.toLowerCase().includes(query.toLowerCase())
             )
         );
