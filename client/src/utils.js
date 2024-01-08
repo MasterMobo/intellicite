@@ -1,1 +1,0 @@
-export const LINK = 'https://www.intellicite.online/api/v1'
