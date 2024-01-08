@@ -41,8 +41,6 @@ function SavedPapersPage() {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
-            console.log(response.data.articles);
-
             await setPapers(response.data.articles);
             await setCurrentPapers(response.data.articles);
         };
@@ -55,6 +53,7 @@ function SavedPapersPage() {
             setCurrentPapers(papers);
             return;
         }
+
         setCurrentPapers(findPapers(papers, searchQuery));
     };
 
