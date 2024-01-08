@@ -5,8 +5,7 @@ import SearchResultContainer from "./SearchResults/SearchResultContainer";
 import axios from "axios";
 import useResponsive from "../hooks/useResponsive";
 
-// FIXME: This is should be an environment variable
-const BASE_URL = "https://www.intellicite.online/api/v1/process";
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 const SearchContext = createContext();
 
@@ -27,10 +26,9 @@ function SearchContainer() {
         await setSearchState("loading");
 
         try {
-            const response = await axios.post(BASE_URL, {
-                user_input: searchText,
+            const response = await axios.post(`${apiUrl}/search`, {
+                userInput: searchText,
             });
-            console.log(response.data);
             await setSearchResults(response.data);
         } catch (error) {
             console.log(error);

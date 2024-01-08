@@ -13,26 +13,31 @@ import {
 import DownloadIcon from "@mui/icons-material/Download";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
+
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 function SavedPaperFooter({ paper }) {
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
 
-    const handleDeleteDialogOpen = () => {
-        setDeleteDialogOpen(true);
-    };
-
-    const handleDeleteDialogClose = () => {
-        setDeleteDialogOpen(false);
-    };
-
     const handleDelete = async () => {
-        console.log(`deleted paper ${paper.id}`);
-        await setDeleteDialogOpen(false);
-        return;
+        try {
+            await axios.delete(`${apiUrl}/user/${paper.user_id}/saved`, {
+                article: paper,
+            });
+            await setDeleteDialogOpen(false);
+        } catch (error) {
+            console.log(error);
+            await setDeleteDialogOpen(false);
+        }
     };
+
     return (
         <Box sx={{ mt: 1, mb: 0, display: "flex", gap: 2 }}>
-            <IconButton color="primary" onClick={handleDeleteDialogOpen}>
+            <IconButton
+                color="primary"
+                onClick={() => setDeleteDialogOpen(true)}
+            >
                 <DeleteIcon />
             </IconButton>
 
@@ -44,7 +49,9 @@ function SavedPaperFooter({ paper }) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleDeleteDialogClose}>Cancel</Button>
+                    <Button onClick={() => setDeleteDialogOpen(false)}>
+                        Cancel
+                    </Button>
                     <Button onClick={handleDelete}>Delete</Button>
                 </DialogActions>
             </Dialog>

@@ -1,13 +1,40 @@
-import { Box, IconButton, Link } from "@mui/material";
+import { useState } from "react";
+import { Box, IconButton, Link, Snackbar } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import DownloadIcon from "@mui/icons-material/Download";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { isLoggedIn, getUser } from "../../utils/authUtils";
+import axios from "axios";
+
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 function PaperFooter({ paper, searchText }) {
+    const [saveSuccessOpen, setSaveSuccessOpen] = useState(false);
+    const [saveErrorOpen, setSaveErrorOpen] = useState(false);
+    const [notLoggedInOpen, setNotLoggedInOpen] = useState(false);
+
     const handleSave = async () => {
-        paper.userQuery = searchText;
-        paper.saveTime = new Date().toISOString();
-        return;
+        if (!isLoggedIn()) {
+            await setNotLoggedInOpen(true);
+            return;
+        }
+
+        const user = getUser();
+
+        try {
+            await axios.post(`${apiUrl}/user/${user._id}/saved`, {
+                article: {
+                    ...paper,
+                    userQuery: searchText,
+                    saveDate: new Date().toISOString(),
+                },
+            });
+
+            await setSaveSuccessOpen(true);
+        } catch (error) {
+            console.log(error);
+            await setSaveErrorOpen(true);
+        }
     };
 
     return (
@@ -15,7 +42,6 @@ function PaperFooter({ paper, searchText }) {
             <IconButton color="primary" onClick={handleSave}>
                 <FavoriteIcon />
             </IconButton>
-
             <IconButton
                 color="primary"
                 href={paper.download_url}
@@ -24,7 +50,6 @@ function PaperFooter({ paper, searchText }) {
             >
                 <DownloadIcon />
             </IconButton>
-
             <Link
                 href={paper.url}
                 underline="hover"
@@ -35,6 +60,24 @@ function PaperFooter({ paper, searchText }) {
                 {"View Paper"}
                 <OpenInNewIcon sx={{ ml: 0.5, fontSize: 15 }} />
             </Link>
+            <Snackbar
+                open={saveSuccessOpen}
+                autoHideDuration={3000}
+                onClose={() => setSaveSuccessOpen(false)}
+                message="Saved paper!"
+            />
+            <Snackbar
+                open={notLoggedInOpen}
+                autoHideDuration={3000}
+                onClose={() => setNotLoggedInOpen(false)}
+                message="You need to login to save papers!"
+            />
+            <Snackbar
+                open={saveErrorOpen}
+                autoHideDuration={3000}
+                onClose={() => setSaveErrorOpen(false)}
+                message="Something went wrong, please try again"
+            />
         </Box>
     );
 }

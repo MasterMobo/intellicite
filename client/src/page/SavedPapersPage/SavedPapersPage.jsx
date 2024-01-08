@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     Box,
     Button,
     Container,
     Divider,
-    Stack,
     TextField,
     Typography,
     InputLabel,
@@ -12,16 +11,38 @@ import {
     MenuItem,
     FormControl,
 } from "@mui/material";
-
-import { savedPapers } from "../sampleData";
-import SavedPaperRecord from "./SavedPaperRecord";
-
 import { findPapers, sortPapersByRecency } from "./utils/savedPapersUtils";
+import SavedPaperList from "./SavedPaperList";
+import { isLoggedIn, getUser } from "../HomePage/utils/authUtils";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 function SavedPapersPage() {
-    const [papers, setPapers] = useState(savedPapers); // Original papers from database
+    const navigate = useNavigate();
+    const [papers, setPapers] = useState([]); // Original papers from database
     const [currentPapers, setCurrentPapers] = useState(papers); // Papers after search/filter/sort
     const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        if (!isLoggedIn()) {
+            navigate("/");
+            alert("Please login to view saved papers");
+            return;
+        }
+
+        const fetchPapers = async () => {
+            const user = getUser();
+            const response = await axios.get(
+                `${apiUrl}/user/${user._id}/saved`
+            );
+
+            await setPapers(response.data);
+        };
+
+        fetchPapers();
+    }, []);
 
     const handleSearch = () => {
         if (searchQuery === "") {
@@ -83,17 +104,7 @@ function SavedPapersPage() {
 
             <Divider sx={{ my: 3 }}></Divider>
 
-            <Stack direction="column" spacing={2}>
-                {currentPapers.map((paper, index) => {
-                    return (
-                        <SavedPaperRecord
-                            paper={paper}
-                            index={index}
-                            key={index}
-                        />
-                    );
-                })}
-            </Stack>
+            <SavedPaperList papers={currentPapers}></SavedPaperList>
         </Container>
     );
 }
