@@ -3,17 +3,23 @@ import "./nav.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 
+import { getUser, isLoggedIn } from "../page/HomePage/utils/authUtils";
+
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 function NavBar({ isOpenMenu, toggleMenu }) {
     const [isLogin, setIsLogin] = useState(true);
+
     const [user, setUser] = useState({
         name: "",
         password: "",
     });
-    const [isActive, setIsActive] = useState(
-        JSON.parse(localStorage.getItem("user")) || false
-    );
+    const [isActive, setIsActive] = useState(getUser() || false);
+
+    useEffect(() => {
+        setIsActive(getUser());
+    }, []);
+
     const [isSignUp, setIsSignUp] = useState(false);
     const [signUpForm, setSignUpForm] = useState({
         name: "",
@@ -47,6 +53,7 @@ function NavBar({ isOpenMenu, toggleMenu }) {
 
     const handleLogout = () => {
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
         setIsActive({});
     };
 
@@ -124,7 +131,7 @@ function NavBar({ isOpenMenu, toggleMenu }) {
             </div>
             {isOpenMenu && (
                 <>
-                    {isActive?.name ? (
+                    {isActive?.username ? (
                         <div className="menu">
                             <img
                                 src="https://static.canva.com/web/images/87e22a62965f141aa08e93699b0b3527.jpg"

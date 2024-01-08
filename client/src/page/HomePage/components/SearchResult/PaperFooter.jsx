@@ -3,7 +3,7 @@ import { Box, IconButton, Link, Snackbar } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import DownloadIcon from "@mui/icons-material/Download";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import { isLoggedIn, getUser } from "../../utils/authUtils";
+import { isLoggedIn, getUser, getToken } from "../../utils/authUtils";
 import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
@@ -20,15 +20,24 @@ function PaperFooter({ paper, searchText }) {
         }
 
         const user = getUser();
+        const token = getToken();
 
         try {
-            await axios.post(`${apiUrl}/user/${user._id}/saved`, {
-                article: {
-                    ...paper,
-                    userQuery: searchText,
-                    saveDate: new Date().toISOString(),
+            await axios.post(
+                `${apiUrl}/user/${user._id}/saved`,
+                {
+                    article: {
+                        ...paper,
+                        userQuery: searchText,
+                        saveDate: new Date().toISOString(),
+                    },
                 },
-            });
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
 
             await setSaveSuccessOpen(true);
         } catch (error) {

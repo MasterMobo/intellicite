@@ -9,4 +9,8 @@ const getUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
-export { isLoggedIn, getUser };
+const getToken = () => {
+    return localStorage.getItem("token");
+};
+
+export { isLoggedIn, getUser, getToken };
