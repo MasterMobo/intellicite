@@ -138,7 +138,7 @@ function NavBar({ isOpenMenu, toggleMenu }) {
                                 alt=""
                             />
                             <h1>
-                                {JSON.parse(localStorage.getItem("user"))?.name}
+                                {JSON.parse(localStorage.getItem("user"))?.username}
                             </h1>
                             <ul className="menu-list">
                                 <li className="item">
