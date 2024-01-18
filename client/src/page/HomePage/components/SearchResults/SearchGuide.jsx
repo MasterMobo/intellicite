@@ -113,9 +113,6 @@ function SearchGuide() {
                     </Typography>
                 }
             />
-            <Typography align="center" variant="caption" mt={2}>
-                Still confused? Check out our <Link href="#">User Guide</Link>
-            </Typography>
         </Stack>
     );
 }
